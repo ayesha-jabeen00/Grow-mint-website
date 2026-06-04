@@ -14,7 +14,7 @@ export function Footer() {
                 alt="Hash Orbit"
                 width={1200}
                 height={675}
-                className="h-12 w-auto md:h-14 object-contain"
+                className="h-[60px] w-auto md:h-20 object-contain"
               />
             </Link>
             <p className="mt-4 max-w-sm text-sm text-muted-foreground">
