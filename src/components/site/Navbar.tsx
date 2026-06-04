@@ -1,7 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Menu, X, Sparkles } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logoAsset from "@/assets/hash-orbit-logo.png.asset.json";
 
 const links = [
   { to: "/", label: "Home" },
@@ -31,11 +32,8 @@ export function Navbar() {
       }`}
     >
       <div className="container-page flex h-16 items-center justify-between">
-        <Link to="/" className="flex items-center gap-2 font-display text-lg font-bold">
-          <span className="grid h-8 w-8 place-items-center rounded-lg bg-gradient-brand text-primary-foreground shadow-glow">
-            <Sparkles className="h-4 w-4" />
-          </span>
-          Northwind
+        <Link to="/" className="flex items-center" aria-label="Hash Orbit home">
+          <img src={logoAsset.url} alt="Hash Orbit" className="h-8 w-auto" />
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex">

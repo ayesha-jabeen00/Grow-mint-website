@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { Sparkles, Twitter, Linkedin, Instagram, Youtube } from "lucide-react";
+import { Twitter, Linkedin, Instagram, Youtube } from "lucide-react";
+import logoAsset from "@/assets/hash-orbit-logo.png.asset.json";
 
 export function Footer() {
   return (
@@ -7,11 +8,8 @@ export function Footer() {
       <div className="container-page py-16">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
-            <Link to="/" className="flex items-center gap-2 font-display text-lg font-bold">
-              <span className="grid h-8 w-8 place-items-center rounded-lg bg-gradient-brand text-primary-foreground">
-                <Sparkles className="h-4 w-4" />
-              </span>
-              Northwind
+            <Link to="/" className="flex items-center" aria-label="Hash Orbit home">
+              <img src={logoAsset.url} alt="Hash Orbit" className="h-9 w-auto" />
             </Link>
             <p className="mt-4 max-w-sm text-sm text-muted-foreground">
               A performance marketing studio building compounding growth engines for ambitious brands across the globe.
