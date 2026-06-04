@@ -8,8 +8,14 @@ export function Footer() {
       <div className="container-page py-16">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
-            <Link to="/" className="flex items-center" aria-label="Hash Orbit home">
-              <img src={logoAsset.url} alt="Hash Orbit" className="h-9 w-auto" />
+            <Link to="/" className="inline-flex items-center" aria-label="Hash Orbit home">
+              <img
+                src={logoAsset.url}
+                alt="Hash Orbit"
+                width={1200}
+                height={675}
+                className="h-12 w-auto md:h-14 object-contain"
+              />
             </Link>
             <p className="mt-4 max-w-sm text-sm text-muted-foreground">
               A performance marketing studio building compounding growth engines for ambitious brands across the globe.
