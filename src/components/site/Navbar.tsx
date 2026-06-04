@@ -1,7 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { SearchBar } from "@/components/site/SearchBar";
 import logoAsset from "@/assets/hash-orbit-logo.png.asset.json";
 
 const links = [
@@ -11,6 +12,9 @@ const links = [
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
 ] as const;
+
+const PHONE_DISPLAY = "+91 77997 70919";
+const PHONE_HREF = "tel:+917799770919";
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
@@ -31,7 +35,7 @@ export function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <div className="container-page flex h-24 items-center justify-between md:h-28">
+      <div className="container-page flex h-24 items-center justify-between gap-4 md:h-28">
         <Link to="/" className="flex items-center shrink-0" aria-label="Hash Orbit home">
           <img
             src={logoAsset.url}
@@ -42,7 +46,7 @@ export function Navbar() {
           />
         </Link>
 
-        <nav className="hidden items-center gap-1 md:flex">
+        <nav className="hidden items-center gap-1 lg:flex">
           {links.map((l) => (
             <Link
               key={l.to}
@@ -56,9 +60,13 @@ export function Navbar() {
           ))}
         </nav>
 
-        <div className="hidden md:flex">
-          <Button asChild variant="brand" size="sm">
-            <Link to="/contact">Book Free Audit</Link>
+        <div className="hidden md:flex items-center gap-3 flex-1 max-w-md justify-end">
+          <SearchBar className="w-full max-w-xs" />
+          <Button asChild variant="brand" size="sm" className="shrink-0">
+            <a href={PHONE_HREF} aria-label={`Call us at ${PHONE_DISPLAY}`}>
+              <Phone className="h-4 w-4" />
+              <span className="hidden xl:inline">Call Us</span>
+            </a>
           </Button>
         </div>
 
@@ -73,7 +81,8 @@ export function Navbar() {
 
       {open && (
         <div className="border-t border-border bg-background md:hidden">
-          <div className="container-page flex flex-col gap-1 py-3">
+          <div className="container-page flex flex-col gap-2 py-3">
+            <SearchBar onNavigate={() => setOpen(false)} />
             {links.map((l) => (
               <Link
                 key={l.to}
@@ -84,8 +93,11 @@ export function Navbar() {
                 {l.label}
               </Link>
             ))}
-            <Button asChild variant="brand" className="mt-2">
-              <Link to="/contact" onClick={() => setOpen(false)}>Book Free Audit</Link>
+            <Button asChild variant="brand" className="mt-1">
+              <a href={PHONE_HREF} onClick={() => setOpen(false)}>
+                <Phone className="h-4 w-4" />
+                Call Us
+              </a>
             </Button>
           </div>
         </div>
