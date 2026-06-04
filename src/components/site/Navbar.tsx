@@ -31,14 +31,14 @@ export function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <div className="container-page flex h-20 items-center justify-between">
+      <div className="container-page flex h-24 items-center justify-between md:h-28">
         <Link to="/" className="flex items-center shrink-0" aria-label="Hash Orbit home">
           <img
             src={logoAsset.url}
             alt="Hash Orbit"
             width={1200}
             height={675}
-            className="h-10 w-auto md:h-12 object-contain"
+            className="h-[60px] w-auto md:h-20 object-contain"
           />
         </Link>
 
