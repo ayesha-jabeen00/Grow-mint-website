@@ -127,19 +127,36 @@ function HeroStat({ label, value, suffix, prefix }: { label: string; value: numb
 }
 
 /* ---------------- LOGOS ---------------- */
+import veevibeAsset from "@/assets/veevibe.png.asset.json";
+import voatAsset from "@/assets/voat.png.asset.json";
+import manahireAsset from "@/assets/manahire.png.asset.json";
+import skyrydrAsset from "@/assets/skyrydr.png.asset.json";
+import skyLogisticsAsset from "@/assets/sky-logistics.png.asset.json";
+
 function Logos() {
-  const brands = ["Lumen", "Aperture", "Nordia", "Halcyon", "Vesta", "Orbital", "Pinecrest", "Beacon", "Northstar", "Quanta"];
+  const brands = [
+    { name: "VeeVibes", src: veevibeAsset.url },
+    { name: "VOAT Network", src: voatAsset.url },
+    { name: "ManaHire", src: manahireAsset.url },
+    { name: "Skyrydr", src: skyrydrAsset.url },
+    { name: "Sky Logistics Hub", src: skyLogisticsAsset.url },
+  ];
   const row = [...brands, ...brands];
   return (
     <section className="border-y border-border bg-surface py-10">
       <p className="text-center text-xs uppercase tracking-widest text-muted-foreground">
         Trusted by businesses across industries
       </p>
-      <div className="mt-6 overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_15%,black_85%,transparent)]">
-        <div className="flex w-max animate-marquee gap-12">
+      <div className="group mt-6 overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_15%,black_85%,transparent)]">
+        <div className="flex w-max animate-marquee items-center gap-16 group-hover:[animation-play-state:paused] md:gap-24">
           {row.map((b, i) => (
-            <div key={i} className="flex h-8 items-center px-4 font-display text-xl font-semibold text-muted-foreground/70">
-              {b}<sup className="ml-0.5 text-accent">●</sup>
+            <div key={i} className="flex h-16 shrink-0 items-center justify-center px-4 md:h-20">
+              <img
+                src={b.src}
+                alt={b.name}
+                loading="lazy"
+                className="h-full w-auto max-w-[180px] object-contain opacity-80 transition-opacity hover:opacity-100 md:max-w-[220px]"
+              />
             </div>
           ))}
         </div>
