@@ -143,19 +143,19 @@ function Logos() {
   ];
   const row = [...brands, ...brands];
   return (
-    <section className="border-y border-border bg-surface py-10">
-      <p className="text-center text-xs uppercase tracking-widest text-muted-foreground">
+    <section className="border-y border-border bg-foreground py-12 text-background">
+      <p className="text-center text-xs uppercase tracking-[0.25em] text-background/70">
         Trusted by businesses across industries
       </p>
-      <div className="group mt-6 overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_15%,black_85%,transparent)]">
-        <div className="flex w-max animate-marquee items-center gap-16 group-hover:[animation-play-state:paused] md:gap-24">
+      <div className="group mt-8 overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_10%,black_90%,transparent)]">
+        <div className="flex w-max animate-marquee items-center gap-20 group-hover:[animation-play-state:paused] md:gap-28">
           {row.map((b, i) => (
-            <div key={i} className="flex h-16 shrink-0 items-center justify-center px-4 md:h-20">
+            <div key={i} className="flex h-14 w-[180px] shrink-0 items-center justify-center md:h-16 md:w-[220px]">
               <img
                 src={b.src}
                 alt={b.name}
                 loading="lazy"
-                className="h-full w-auto max-w-[180px] object-contain opacity-80 transition-opacity hover:opacity-100 md:max-w-[220px]"
+                className="max-h-full max-w-full object-contain brightness-0 invert opacity-90 transition-opacity hover:opacity-100"
               />
             </div>
           ))}
