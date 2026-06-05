@@ -73,7 +73,7 @@ function Hero() {
           </h1>
 
           <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground md:text-xl">
-            We're the growth team behind 200+ brands generating $180M+ in tracked revenue. SEO, paid media, and creative — engineered to scale.
+            We're the growth team behind 8+ brands generating ₹3L+ in tracked revenue. SEO, paid media, and creative — engineered to scale.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
@@ -96,8 +96,8 @@ function Hero() {
         <div className="relative mx-auto mt-16 max-w-5xl">
           <div className="grid grid-cols-2 gap-4 rounded-3xl border border-border bg-card/80 p-6 shadow-card backdrop-blur md:grid-cols-4 md:p-8">
             <HeroStat label="Average ROAS" value={450} suffix="%" />
-            <HeroStat label="Brands scaled" value={213} suffix="+" />
-            <HeroStat label="Revenue driven" value={180} prefix="$" suffix="M" />
+            <HeroStat label="Brands scaled" value={8} suffix="+" />
+            <HeroStat label="Revenue driven" value={3} prefix="₹" suffix="L+" />
             <HeroStat label="Client retention" value={94} suffix="%" />
           </div>
           <div className="pointer-events-none absolute -inset-x-10 -bottom-10 -z-10 h-40 bg-gradient-brand opacity-30 blur-3xl" />
@@ -151,11 +151,11 @@ function Logos() {
 /* ---------------- STATS ---------------- */
 function Stats() {
   const items = [
-    { label: "Leads Generated", value: 1.2, suffix: "M+", note: "Across all clients" },
-    { label: "Ad Spend Managed", value: 86, prefix: "$", suffix: "M", note: "Last 24 months" },
+    { label: "Leads Generated", value: 800, suffix: "+", note: "Across all clients" },
+    { label: "Ad Spend Managed", value: 3, prefix: "₹", suffix: "L+", note: "Last 24 months" },
     { label: "Projects Completed", value: 540, suffix: "+", note: "Since 2018" },
     { label: "Client Retention", value: 94, suffix: "%", note: "Year over year" },
-    { label: "Revenue Generated", value: 180, prefix: "$", suffix: "M+", note: "Tracked attribution" },
+    { label: "Revenue Generated", value: 3, prefix: "₹", suffix: "L+", note: "Tracked attribution" },
   ];
   return (
     <section className="container-page py-24">
