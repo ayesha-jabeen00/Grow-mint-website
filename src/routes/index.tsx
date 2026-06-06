@@ -5,9 +5,10 @@ import {
   Shield, Users, BarChart3, Lightbulb, DollarSign, Quote,
   Compass, ClipboardList, Rocket, Wrench, ChartLine, Crown,
   Building2, Stethoscope, GraduationCap, ShoppingBag, UtensilsCrossed,
-  HardHat, Landmark, Cpu, Store, Linkedin, Plus, Minus,
+  HardHat, Landmark, Cpu, Store, Linkedin, Plus, Minus, Loader2,
 } from "lucide-react";
 import { useState } from "react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Counter } from "@/components/site/Counter";
 import {
@@ -718,7 +719,76 @@ function FaqSection() {
 }
 
 /* ---------------- CONTACT CTA ---------------- */
+type AuditForm = {
+  name: string;
+  businessName: string;
+  email: string;
+  phone: string;
+  budget: string;
+  services: string;
+  message: string;
+};
+
+const INITIAL_FORM: AuditForm = {
+  name: "",
+  businessName: "",
+  email: "",
+  phone: "",
+  budget: "",
+  services: "",
+  message: "",
+};
+
 function ContactCta() {
+  const [form, setForm] = useState<AuditForm>(INITIAL_FORM);
+  const [errors, setErrors] = useState<Partial<Record<keyof AuditForm, string>>>({});
+  const [submitting, setSubmitting] = useState(false);
+
+  const update = (k: keyof AuditForm) => (v: string) => {
+    setForm((f) => ({ ...f, [k]: v }));
+    setErrors((e) => ({ ...e, [k]: undefined }));
+  };
+
+  const validate = () => {
+    const e: Partial<Record<keyof AuditForm, string>> = {};
+    if (!form.name.trim()) e.name = "Name is required";
+    if (!form.email.trim()) e.email = "Email is required";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = "Enter a valid email";
+    if (!form.phone.trim()) e.phone = "Phone is required";
+    if (!form.budget) e.budget = "Please select a budget";
+    if (!form.services) e.services = "Please select a service";
+    if (!form.message.trim()) e.message = "Message is required";
+    setErrors(e);
+    return Object.keys(e).length === 0;
+  };
+
+  const onSubmit = async (ev: React.FormEvent) => {
+    ev.preventDefault();
+    if (submitting) return;
+    if (!validate()) return;
+    setSubmitting(true);
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: "a9f25c34-33e6-47cb-858a-21514d6d63e0",
+          subject: "New Free Marketing Audit Request",
+          ...form,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.success) throw new Error(data.message || "Submission failed");
+      toast.success("Thank you! Your free marketing audit request has been received. Our team will contact you within 5 business day.");
+      setForm(INITIAL_FORM);
+      setErrors({});
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
   return (
     <section id="contact" className="relative overflow-hidden bg-[#0B1E3F] py-24 text-white">
       <div className="absolute inset-0 -z-10 [background:radial-gradient(ellipse_at_top_left,rgba(96,132,190,0.45),transparent_55%),radial-gradient(ellipse_at_bottom_right,rgba(0,100,240,0.35),transparent_60%)]" />
@@ -744,25 +814,33 @@ function ContactCta() {
           </ul>
         </div>
 
-        <form className="rounded-3xl border border-background/15 bg-background/5 p-6 backdrop-blur md:p-8" onSubmit={(e) => e.preventDefault()}>
+        <form onSubmit={onSubmit} noValidate className="rounded-3xl border border-background/15 bg-background/5 p-6 backdrop-blur md:p-8">
+          <input type="hidden" name="access_key" value="a9f25c34-33e6-47cb-858a-21514d6d63e0" />
           <div className="grid gap-4 md:grid-cols-2">
-            <Field label="Name" placeholder="Jane Doe" />
-            <Field label="Business name" placeholder="Acme Co." />
-            <Field label="Email" type="email" placeholder="jane@acme.com" />
-            <Field label="Phone" placeholder="+1 555 000 0000" />
-            <SelectField label="Monthly marketing budget" options={["< $5k", "$5k – $15k", "$15k – $50k", "$50k+"]} />
-            <SelectField label="Services interested in" options={["SEO", "Google Ads", "Meta Ads", "Web Development", "Full-funnel"]} />
+            <Field label="Name" placeholder="Jane Doe" value={form.name} onChange={(e) => update("name")(e.target.value)} error={errors.name} />
+            <Field label="Business name" placeholder="Acme Co." value={form.businessName} onChange={(e) => update("businessName")(e.target.value)} />
+            <Field label="Email" type="email" placeholder="jane@acme.com" value={form.email} onChange={(e) => update("email")(e.target.value)} error={errors.email} />
+            <Field label="Phone" placeholder="+1 555 000 0000" value={form.phone} onChange={(e) => update("phone")(e.target.value)} error={errors.phone} />
+            <SelectField label="Monthly marketing budget" options={["< $5k", "$5k – $15k", "$15k – $50k", "$50k+"]} value={form.budget} onChange={update("budget")} error={errors.budget} />
+            <SelectField label="Services interested in" options={["SEO", "Google Ads", "Meta Ads", "Web Development", "Full-funnel"]} value={form.services} onChange={update("services")} error={errors.services} />
           </div>
           <div className="mt-4">
             <label className="text-xs font-medium uppercase tracking-wider text-background/60">Message</label>
             <textarea
               rows={4}
               placeholder="Tell us a bit about your goals…"
+              value={form.message}
+              onChange={(e) => update("message")(e.target.value)}
               className="mt-1.5 w-full rounded-xl border border-background/20 bg-background/10 px-4 py-3 text-sm text-background placeholder:text-background/40 outline-none focus:border-accent"
             />
+            {errors.message && <p className="mt-1 text-xs text-red-300">{errors.message}</p>}
           </div>
-          <Button variant="brand" size="lg" className="mt-6 w-full rounded-full">
-            Get Free Marketing Audit <ArrowRight className="h-4 w-4" />
+          <Button type="submit" variant="brand" size="lg" disabled={submitting} className="mt-6 w-full rounded-full">
+            {submitting ? (
+              <>Submitting… <Loader2 className="h-4 w-4 animate-spin" /></>
+            ) : (
+              <>Get Free Marketing Audit <ArrowRight className="h-4 w-4" /></>
+            )}
           </Button>
           <p className="mt-3 text-center text-xs text-background/50">No spam. Reply within 1 business day.</p>
         </form>
@@ -771,7 +849,7 @@ function ContactCta() {
   );
 }
 
-function Field({ label, ...props }: { label: string } & React.InputHTMLAttributes<HTMLInputElement>) {
+function Field({ label, error, ...props }: { label: string; error?: string } & React.InputHTMLAttributes<HTMLInputElement>) {
   return (
     <div>
       <label className="text-xs font-medium uppercase tracking-wider text-background/60">{label}</label>
@@ -779,18 +857,24 @@ function Field({ label, ...props }: { label: string } & React.InputHTMLAttribute
         {...props}
         className="mt-1.5 w-full rounded-xl border border-background/20 bg-background/10 px-4 py-2.5 text-sm text-background placeholder:text-background/40 outline-none focus:border-accent"
       />
+      {error && <p className="mt-1 text-xs text-red-300">{error}</p>}
     </div>
   );
 }
 
-function SelectField({ label, options }: { label: string; options: string[] }) {
+function SelectField({ label, options, value, onChange, error }: { label: string; options: string[]; value?: string; onChange?: (v: string) => void; error?: string }) {
   return (
     <div>
       <label className="text-xs font-medium uppercase tracking-wider text-background/60">{label}</label>
-      <select className="mt-1.5 w-full rounded-xl border border-background/20 bg-background/10 px-4 py-2.5 text-sm text-background outline-none focus:border-accent">
+      <select
+        value={value ?? ""}
+        onChange={(e) => onChange?.(e.target.value)}
+        className="mt-1.5 w-full rounded-xl border border-background/20 bg-background/10 px-4 py-2.5 text-sm text-background outline-none focus:border-accent"
+      >
         <option value="" className="bg-foreground">Select…</option>
-        {options.map((o) => <option key={o} className="bg-foreground">{o}</option>)}
+        {options.map((o) => <option key={o} value={o} className="bg-foreground">{o}</option>)}
       </select>
+      {error && <p className="mt-1 text-xs text-red-300">{error}</p>}
     </div>
   );
 }
