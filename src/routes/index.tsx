@@ -143,8 +143,8 @@ function Logos() {
   ];
   const row = [...brands, ...brands];
   return (
-    <section className="border-y border-border bg-surface py-10">
-      <p className="text-center text-xs uppercase tracking-widest text-muted-foreground">
+    <section className="border-y border-[#0064F0]/30 bg-[#0064F0] py-10">
+      <p className="text-center text-xs uppercase tracking-widest text-white/80">
         Trusted by businesses across industries
       </p>
       <div className="group mt-6 overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_15%,black_85%,transparent)]">
