@@ -720,8 +720,9 @@ function FaqSection() {
 /* ---------------- CONTACT CTA ---------------- */
 function ContactCta() {
   return (
-    <section id="contact" className="relative overflow-hidden bg-foreground py-24 text-background">
-      <div className="absolute inset-0 -z-10 opacity-50 [background:radial-gradient(ellipse_at_top_left,color-mix(in_oklab,var(--primary)_60%,transparent),transparent_60%),radial-gradient(ellipse_at_bottom_right,color-mix(in_oklab,var(--secondary)_60%,transparent),transparent_60%)]" />
+    <section id="contact" className="relative overflow-hidden bg-[#0B1E3F] py-24 text-white">
+      <div className="absolute inset-0 -z-10 [background:radial-gradient(ellipse_at_top_left,rgba(96,132,190,0.45),transparent_55%),radial-gradient(ellipse_at_bottom_right,rgba(0,100,240,0.35),transparent_60%)]" />
+      <div className="absolute inset-0 -z-10 opacity-[0.06] [background-image:linear-gradient(rgba(255,255,255,0.6)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.6)_1px,transparent_1px)] [background-size:40px_40px]" />
       <div className="container-page grid items-start gap-12 lg:grid-cols-2">
         <div>
           <div className="inline-flex items-center gap-2 rounded-full border border-background/20 bg-background/10 px-3 py-1 text-xs font-medium backdrop-blur">
