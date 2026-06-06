@@ -539,7 +539,7 @@ const WHY = [
 function WhyUs() {
   return (
     <section className="container-page py-24">
-      <SectionHeader eyebrow="Why Northwind" title="Six reasons clients stay 3+ years" subtitle="The unsexy fundamentals that compound into outsized results." />
+      <SectionHeader eyebrow="Why Northwind" title="Six reasons clients stay 8+ Months" subtitle="The unsexy fundamentals that compound into outsized results." />
       <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {WHY.map((w) => (
           <div key={w.t} className="group rounded-2xl border border-border p-6 transition-all hover:border-primary/50 hover:bg-surface">
