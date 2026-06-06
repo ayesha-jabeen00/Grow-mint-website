@@ -85,6 +85,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:description", content: "Data-driven digital marketing agency helping brands scale with SEO, paid ads, and creative that converts." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Northwind — Performance Marketing Agency" },
+      { name: "twitter:description", content: "Data-driven digital marketing agency helping brands scale with SEO, paid ads, and creative that converts." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/bd886c84-88d7-437c-a7fb-9fe83fd372b7/id-preview-c9a5398f--2d05f470-7b83-490c-975d-d12f6bab4505.lovable.app-1780765244447.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/bd886c84-88d7-437c-a7fb-9fe83fd372b7/id-preview-c9a5398f--2d05f470-7b83-490c-975d-d12f6bab4505.lovable.app-1780765244447.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
