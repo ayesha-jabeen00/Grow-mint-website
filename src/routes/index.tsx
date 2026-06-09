@@ -43,7 +43,7 @@ function Home() {
       <Dashboard />
       <Process />
       <WhyUs />
-      <Testimonials />
+      <ClientsSection />
       <Team />
       <Industries />
       <FaqSection />
