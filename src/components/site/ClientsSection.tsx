@@ -71,36 +71,7 @@ const clients: Client[] = [
     rating: 5,
     industry: "Real Estate",
   },
-  {
-    name: "TechNova Solutions",
-    handle: "@technova",
-    url: "https://www.instagram.com/technova/",
-    initials: "TN",
-    gradient: "from-cyan-500 to-blue-500",
-    testimonial: "The AI solutions provided have revolutionized our customer support.",
-    rating: 5,
-    industry: "Technology",
-  },
-  {
-    name: "EcoStyle Retail",
-    handle: "@ecostyle.official",
-    url: "https://www.instagram.com/ecostyle.official/",
-    initials: "ES",
-    gradient: "from-green-500 to-lime-500",
-    testimonial: "Their e-commerce platform is both beautiful and functional.",
-    rating: 4,
-    industry: "Fashion & Retail",
-  },
-  {
-    name: "FitLife Wellness",
-    handle: "@fitlife.app",
-    url: "https://www.instagram.com/fitlife.app/",
-    initials: "FL",
-    gradient: "from-fuchsia-500 to-purple-600",
-    testimonial: "The fitness tracking app they built has exceptional UI/UX.",
-    rating: 5,
-    industry: "Health & Fitness",
-  },
+
 ];
 
 const Rating = ({ stars }: { stars: number }) => (
@@ -301,7 +272,7 @@ export function ClientsSection() {
                 href={client.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-pink-500 via-fuchsia-500 to-purple-600 px-4 py-2.5 text-sm font-medium text-white shadow-md transition-all hover:opacity-95 hover:shadow-lg"
+                className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground shadow-md transition-all hover:bg-primary/90 hover:shadow-lg"
               >
                 <Instagram className="h-4 w-4" />
                 Follow on Instagram
