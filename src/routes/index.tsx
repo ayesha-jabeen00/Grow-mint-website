@@ -12,6 +12,7 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Counter } from "@/components/site/Counter";
 import { ClientsSection } from "@/components/site/ClientsSection";
+import { CreativesSection } from "@/components/site/CreativesSection";
 import {
   Accordion, AccordionContent, AccordionItem, AccordionTrigger,
 } from "@/components/ui/accordion";
@@ -45,6 +46,7 @@ function Home() {
       <Process />
       <WhyUs />
       <ClientsSection />
+      <CreativesSection />
       <Team />
       <Industries />
       <FaqSection />
