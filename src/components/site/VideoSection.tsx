@@ -80,6 +80,10 @@ export function VideoSection() {
               href={video.url}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={(e) => {
+                e.preventDefault();
+                window.open(video.url, "_blank", "noopener,noreferrer");
+              }}
               className="group relative block aspect-[9/16] overflow-hidden rounded-2xl shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
             >
               {/* Thumbnail */}
