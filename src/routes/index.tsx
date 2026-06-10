@@ -41,9 +41,9 @@ function Home() {
       <Logos />
       <Stats />
       <Services />
-      <Portfolio />
-      <CaseStudy />
-      <Dashboard />
+      {/* <Portfolio /> */}
+      {/* <CaseStudy /> */}
+      {/* <Dashboard /> */}
       <Process />
       <WhyUs />
       <ClientsSection />
@@ -51,7 +51,7 @@ function Home() {
       <VideoSection />
       <Team />
       <Industries />
-      <FaqSection />
+      {/* <FaqSection /> */}
       <ContactCta />
     </>
   );
@@ -252,241 +252,241 @@ function Services() {
 }
 
 /* ---------------- PORTFOLIO ---------------- */
-const PROJECTS = [
-  { title: "Lumen Skincare", industry: "E-commerce", services: ["Meta Ads", "Email"], result: "5.8x ROAS in 90 days", category: "Meta Ads", color: "from-rose-400 to-orange-400" },
-  { title: "Nordia Realty", industry: "Real Estate", services: ["SEO", "Web Dev"], result: "412% organic leads", category: "SEO", color: "from-blue-400 to-cyan-400" },
-  { title: "Vesta Clinic", industry: "Healthcare", services: ["Google Ads", "Funnel"], result: "$28 cost per booking", category: "Google Ads", color: "from-emerald-400 to-teal-400" },
-  { title: "Halcyon Studio", industry: "Branding", services: ["Brand", "Web Dev"], result: "Series A landed", category: "Branding", color: "from-violet-400 to-fuchsia-400" },
-  { title: "Beacon Coffee", industry: "Local", services: ["Social", "Content"], result: "+184% foot traffic", category: "Social Media", color: "from-amber-400 to-orange-500" },
-  { title: "Quanta SaaS", industry: "B2B SaaS", services: ["SEO", "Content"], result: "3.2k MQLs/quarter", category: "SEO", color: "from-indigo-400 to-blue-500" },
-];
-const CATEGORIES = ["All", "SEO", "Meta Ads", "Google Ads", "Social Media", "Branding", "Web Development"];
+// const PROJECTS = [
+//   { title: "Lumen Skincare", industry: "E-commerce", services: ["Meta Ads", "Email"], result: "5.8x ROAS in 90 days", category: "Meta Ads", color: "from-rose-400 to-orange-400" },
+//   { title: "Nordia Realty", industry: "Real Estate", services: ["SEO", "Web Dev"], result: "412% organic leads", category: "SEO", color: "from-blue-400 to-cyan-400" },
+//   { title: "Vesta Clinic", industry: "Healthcare", services: ["Google Ads", "Funnel"], result: "$28 cost per booking", category: "Google Ads", color: "from-emerald-400 to-teal-400" },
+//   { title: "Halcyon Studio", industry: "Branding", services: ["Brand", "Web Dev"], result: "Series A landed", category: "Branding", color: "from-violet-400 to-fuchsia-400" },
+//   { title: "Beacon Coffee", industry: "Local", services: ["Social", "Content"], result: "+184% foot traffic", category: "Social Media", color: "from-amber-400 to-orange-500" },
+//   { title: "Quanta SaaS", industry: "B2B SaaS", services: ["SEO", "Content"], result: "3.2k MQLs/quarter", category: "SEO", color: "from-indigo-400 to-blue-500" },
+// ];
+// const CATEGORIES = ["All", "SEO", "Meta Ads", "Google Ads", "Social Media", "Branding", "Web Development"];
 
-function Portfolio() {
-  const [filter, setFilter] = useState<string>("All");
-  const visible = PROJECTS.filter((p) => filter === "All" || p.category === filter);
-  return (
-    <section id="portfolio" className="container-page py-24">
-      <SectionHeader
-        eyebrow="Featured work"
-        title="Built. Launched. Scaled."
-        subtitle="A small selection of recent engagements. Filter by what you care about."
-      />
+// function Portfolio() {
+//   const [filter, setFilter] = useState<string>("All");
+//   const visible = PROJECTS.filter((p) => filter === "All" || p.category === filter);
+//   return (
+//     <section id="portfolio" className="container-page py-24">
+//       <SectionHeader
+//         eyebrow="Featured work"
+//         title="Built. Launched. Scaled."
+//         subtitle="A small selection of recent engagements. Filter by what you care about."
+//       />
 
-      <div className="mt-10 flex flex-wrap justify-center gap-2">
-        {CATEGORIES.map((c) => (
-          <button
-            key={c}
-            onClick={() => setFilter(c)}
-            className={`rounded-full border px-4 py-1.5 text-sm font-medium transition-all ${
-              filter === c
-                ? "border-transparent bg-foreground text-background"
-                : "border-border text-muted-foreground hover:text-foreground"
-            }`}
-          >
-            {c}
-          </button>
-        ))}
-      </div>
+//       <div className="mt-10 flex flex-wrap justify-center gap-2">
+//         {CATEGORIES.map((c) => (
+//           <button
+//             key={c}
+//             onClick={() => setFilter(c)}
+//             className={`rounded-full border px-4 py-1.5 text-sm font-medium transition-all ${
+//               filter === c
+//                 ? "border-transparent bg-foreground text-background"
+//                 : "border-border text-muted-foreground hover:text-foreground"
+//             }`}
+//           >
+//             {c}
+//           </button>
+//         ))}
+//       </div>
 
-      <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {visible.map((p) => (
-          <article key={p.title} className="group relative overflow-hidden rounded-3xl border border-border bg-card transition-all hover:shadow-card">
-            <div className={`relative aspect-[4/3] bg-gradient-to-br ${p.color} p-6`}>
-              <div className="absolute inset-0 opacity-30 mix-blend-overlay [background:radial-gradient(circle_at_30%_20%,white,transparent_60%)]" />
-              <div className="relative flex h-full flex-col justify-between text-white">
-                <span className="inline-flex w-fit items-center rounded-full bg-white/20 px-3 py-1 text-xs font-medium backdrop-blur">
-                  {p.industry}
-                </span>
-                <div className="font-display text-3xl font-bold leading-tight">{p.title}</div>
-              </div>
-              <div className="absolute inset-0 grid place-items-center bg-black/40 opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100">
-                <Button variant="brand" size="sm" className="rounded-full">
-                  View Case Study <ArrowRight className="h-4 w-4" />
-                </Button>
-              </div>
-            </div>
-            <div className="p-6">
-              <div className="flex flex-wrap gap-1.5">
-                {p.services.map((s) => (
-                  <span key={s} className="rounded-full bg-muted px-2.5 py-0.5 text-xs text-muted-foreground">{s}</span>
-                ))}
-              </div>
-              <div className="mt-3 flex items-baseline justify-between gap-2">
-                <span className="text-sm text-muted-foreground">Result</span>
-                <span className="font-display text-lg font-semibold text-gradient">{p.result}</span>
-              </div>
-            </div>
-          </article>
-        ))}
-      </div>
-    </section>
-  );
-}
+//       <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+//         {visible.map((p) => (
+//           <article key={p.title} className="group relative overflow-hidden rounded-3xl border border-border bg-card transition-all hover:shadow-card">
+//             <div className={`relative aspect-[4/3] bg-gradient-to-br ${p.color} p-6`}>
+//               <div className="absolute inset-0 opacity-30 mix-blend-overlay [background:radial-gradient(circle_at_30%_20%,white,transparent_60%)]" />
+//               <div className="relative flex h-full flex-col justify-between text-white">
+//                 <span className="inline-flex w-fit items-center rounded-full bg-white/20 px-3 py-1 text-xs font-medium backdrop-blur">
+//                   {p.industry}
+//                 </span>
+//                 <div className="font-display text-3xl font-bold leading-tight">{p.title}</div>
+//               </div>
+//               <div className="absolute inset-0 grid place-items-center bg-black/40 opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100">
+//                 <Button variant="brand" size="sm" className="rounded-full">
+//                   View Case Study <ArrowRight className="h-4 w-4" />
+//                 </Button>
+//               </div>
+//             </div>
+//             <div className="p-6">
+//               <div className="flex flex-wrap gap-1.5">
+//                 {p.services.map((s) => (
+//                   <span key={s} className="rounded-full bg-muted px-2.5 py-0.5 text-xs text-muted-foreground">{s}</span>
+//                 ))}
+//               </div>
+//               <div className="mt-3 flex items-baseline justify-between gap-2">
+//                 <span className="text-sm text-muted-foreground">Result</span>
+//                 <span className="font-display text-lg font-semibold text-gradient">{p.result}</span>
+//               </div>
+//             </div>
+//           </article>
+//         ))}
+//       </div>
+//     </section>
+//   );
+// }
 
 /* ---------------- CASE STUDY ---------------- */
-function CaseStudy() {
-  const beforeAfter = [
-    { label: "Monthly Revenue", before: "$42k", after: "$268k" },
-    { label: "ROAS", before: "1.8x", after: "5.6x" },
-    { label: "Cost per Lead", before: "$84", after: "$19" },
-    { label: "Email Revenue %", before: "6%", after: "31%" },
-  ];
-  return (
-    <section className="bg-surface py-24">
-      <div className="container-page grid items-start gap-12 lg:grid-cols-2">
-        <div>
-          <SectionHeader
-            eyebrow="Featured case study"
-            title="How Lumen Skincare hit $3M ARR in 11 months"
-            align="left"
-            subtitle="A direct-to-consumer skincare brand stuck at $50k/mo. We rebuilt the entire growth stack — and the trajectory."
-          />
-          <div className="mt-8 space-y-6">
-            <CaseBlock title="The challenge" body="Lumen was acquiring customers profitably but couldn't scale past $50k/mo without ROAS collapsing. Email was an afterthought." />
-            <CaseBlock title="The strategy" body="Creative-led Meta scaling with 60+ ads per month, a Klaviyo flow rebuild, and a CRO-focused PDP redesign." />
-            <CaseBlock title="The execution" body="Weekly creative sprints, daily campaign optimization, and a structured testing roadmap shared in a live dashboard." />
-          </div>
-          <div className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-4">
-            <Metric value="450%" label="ROAS" />
-            <Metric value="3,000" label="Leads / mo" />
-            <Metric value="5×" label="Web Traffic" />
-            <Metric value="230%" label="Revenue Growth" />
-          </div>
-        </div>
+// function CaseStudy() {
+//   const beforeAfter = [
+//     { label: "Monthly Revenue", before: "$42k", after: "$268k" },
+//     { label: "ROAS", before: "1.8x", after: "5.6x" },
+//     { label: "Cost per Lead", before: "$84", after: "$19" },
+//     { label: "Email Revenue %", before: "6%", after: "31%" },
+//   ];
+//   return (
+//     <section className="bg-surface py-24">
+//       <div className="container-page grid items-start gap-12 lg:grid-cols-2">
+//         <div>
+//           <SectionHeader
+//             eyebrow="Featured case study"
+//             title="How Lumen Skincare hit $3M ARR in 11 months"
+//             align="left"
+//             subtitle="A direct-to-consumer skincare brand stuck at $50k/mo. We rebuilt the entire growth stack — and the trajectory."
+//           />
+//           <div className="mt-8 space-y-6">
+//             <CaseBlock title="The challenge" body="Lumen was acquiring customers profitably but couldn't scale past $50k/mo without ROAS collapsing. Email was an afterthought." />
+//             <CaseBlock title="The strategy" body="Creative-led Meta scaling with 60+ ads per month, a Klaviyo flow rebuild, and a CRO-focused PDP redesign." />
+//             <CaseBlock title="The execution" body="Weekly creative sprints, daily campaign optimization, and a structured testing roadmap shared in a live dashboard." />
+//           </div>
+//           <div className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-4">
+//             <Metric value="450%" label="ROAS" />
+//             <Metric value="3,000" label="Leads / mo" />
+//             <Metric value="5×" label="Web Traffic" />
+//             <Metric value="230%" label="Revenue Growth" />
+//           </div>
+//         </div>
 
-        <div className="rounded-3xl border border-border bg-card p-6 shadow-card md:p-8">
-          <div className="flex items-center justify-between">
-            <h3 className="font-display text-lg font-semibold">Before vs After</h3>
-            <span className="text-xs text-muted-foreground">11-month engagement</span>
-          </div>
-          <div className="mt-6 divide-y divide-border">
-            {beforeAfter.map((row) => (
-              <div key={row.label} className="grid grid-cols-3 items-center py-4">
-                <div className="text-sm text-muted-foreground">{row.label}</div>
-                <div className="text-right font-display text-lg font-semibold text-muted-foreground line-through">{row.before}</div>
-                <div className="text-right font-display text-2xl font-bold text-gradient">{row.after}</div>
-              </div>
-            ))}
-          </div>
-          <Button asChild variant="brand" className="mt-6 w-full rounded-full">
-            <Link to="/portfolio">Read the full case study <ArrowRight className="h-4 w-4" /></Link>
-          </Button>
-        </div>
-      </div>
-    </section>
-  );
-}
+//         <div className="rounded-3xl border border-border bg-card p-6 shadow-card md:p-8">
+//           <div className="flex items-center justify-between">
+//             <h3 className="font-display text-lg font-semibold">Before vs After</h3>
+//             <span className="text-xs text-muted-foreground">11-month engagement</span>
+//           </div>
+//           <div className="mt-6 divide-y divide-border">
+//             {beforeAfter.map((row) => (
+//               <div key={row.label} className="grid grid-cols-3 items-center py-4">
+//                 <div className="text-sm text-muted-foreground">{row.label}</div>
+//                 <div className="text-right font-display text-lg font-semibold text-muted-foreground line-through">{row.before}</div>
+//                 <div className="text-right font-display text-2xl font-bold text-gradient">{row.after}</div>
+//               </div>
+//             ))}
+//           </div>
+//           <Button asChild variant="brand" className="mt-6 w-full rounded-full">
+//             <Link to="/portfolio">Read the full case study <ArrowRight className="h-4 w-4" /></Link>
+//           </Button>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }
 
-function CaseBlock({ title, body }: { title: string; body: string }) {
-  return (
-    <div className="rounded-2xl border border-border bg-card p-5">
-      <div className="text-xs font-semibold uppercase tracking-widest text-accent">{title}</div>
-      <p className="mt-2 text-sm text-muted-foreground">{body}</p>
-    </div>
-  );
-}
+// function CaseBlock({ title, body }: { title: string; body: string }) {
+//   return (
+//     <div className="rounded-2xl border border-border bg-card p-5">
+//       <div className="text-xs font-semibold uppercase tracking-widest text-accent">{title}</div>
+//       <p className="mt-2 text-sm text-muted-foreground">{body}</p>
+//     </div>
+//   );
+// }
 
-function Metric({ value, label }: { value: string; label: string }) {
-  return (
-    <div className="rounded-2xl border border-border bg-card p-4 text-center">
-      <div className="font-display text-2xl font-bold text-gradient">{value}</div>
-      <div className="mt-1 text-xs text-muted-foreground">{label}</div>
-    </div>
-  );
-}
+// function Metric({ value, label }: { value: string; label: string }) {
+//   return (
+//     <div className="rounded-2xl border border-border bg-card p-4 text-center">
+//       <div className="font-display text-2xl font-bold text-gradient">{value}</div>
+//       <div className="mt-1 text-xs text-muted-foreground">{label}</div>
+//     </div>
+//   );
+// }
 
 /* ---------------- DASHBOARD ---------------- */
-const trafficData = [
-  { m: "Jan", v: 120 }, { m: "Feb", v: 180 }, { m: "Mar", v: 240 },
-  { m: "Apr", v: 360 }, { m: "May", v: 480 }, { m: "Jun", v: 620 },
-  { m: "Jul", v: 780 }, { m: "Aug", v: 940 },
-];
-const leadsData = [
-  { m: "Jan", v: 40 }, { m: "Feb", v: 62 }, { m: "Mar", v: 88 },
-  { m: "Apr", v: 110 }, { m: "May", v: 168 }, { m: "Jun", v: 220 },
-  { m: "Jul", v: 290 }, { m: "Aug", v: 360 },
-];
+// const trafficData = [
+//   { m: "Jan", v: 120 }, { m: "Feb", v: 180 }, { m: "Mar", v: 240 },
+//   { m: "Apr", v: 360 }, { m: "May", v: 480 }, { m: "Jun", v: 620 },
+//   { m: "Jul", v: 780 }, { m: "Aug", v: 940 },
+// ];
+// const leadsData = [
+//   { m: "Jan", v: 40 }, { m: "Feb", v: 62 }, { m: "Mar", v: 88 },
+//   { m: "Apr", v: 110 }, { m: "May", v: 168 }, { m: "Jun", v: 220 },
+//   { m: "Jul", v: 290 }, { m: "Aug", v: 360 },
+// ];
 
-function Dashboard() {
-  return (
-    <section className="container-page py-24">
-      <SectionHeader
-        eyebrow="Always-on reporting"
-        title="A live dashboard, not a monthly PDF"
-        subtitle="Every client gets a real-time view of what's working — and what we're shipping next."
-      />
-      <div className="mt-12 rounded-3xl border border-border bg-card p-4 shadow-card md:p-8">
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <div>
-            <div className="text-sm text-muted-foreground">Growth overview</div>
-            <div className="font-display text-2xl font-bold">Acme Co. · Last 8 months</div>
-          </div>
-          <div className="flex gap-2 text-xs">
-            <span className="rounded-full bg-emerald-500/10 px-3 py-1 font-medium text-emerald-600 dark:text-emerald-400">● Live</span>
-            <span className="rounded-full border border-border px-3 py-1 text-muted-foreground">Updated 2 min ago</span>
-          </div>
-        </div>
+// function Dashboard() {
+//   return (
+//     <section className="container-page py-24">
+//       <SectionHeader
+//         eyebrow="Always-on reporting"
+//         title="A live dashboard, not a monthly PDF"
+//         subtitle="Every client gets a real-time view of what's working — and what we're shipping next."
+//       />
+//       <div className="mt-12 rounded-3xl border border-border bg-card p-4 shadow-card md:p-8">
+//         <div className="flex flex-wrap items-center justify-between gap-4">
+//           <div>
+//             <div className="text-sm text-muted-foreground">Growth overview</div>
+//             <div className="font-display text-2xl font-bold">Acme Co. · Last 8 months</div>
+//           </div>
+//           <div className="flex gap-2 text-xs">
+//             <span className="rounded-full bg-emerald-500/10 px-3 py-1 font-medium text-emerald-600 dark:text-emerald-400">● Live</span>
+//             <span className="rounded-full border border-border px-3 py-1 text-muted-foreground">Updated 2 min ago</span>
+//           </div>
+//         </div>
 
-        <div className="mt-6 grid gap-4 md:grid-cols-4">
-          <KPI label="Traffic" value="942k" delta="+184%" />
-          <KPI label="Leads" value="3,604" delta="+312%" />
-          <KPI label="Conv. Rate" value="4.8%" delta="+1.9pp" />
-          <KPI label="Revenue" value="$1.28M" delta="+228%" />
-        </div>
+//         <div className="mt-6 grid gap-4 md:grid-cols-4">
+//           <KPI label="Traffic" value="942k" delta="+184%" />
+//           <KPI label="Leads" value="3,604" delta="+312%" />
+//           <KPI label="Conv. Rate" value="4.8%" delta="+1.9pp" />
+//           <KPI label="Revenue" value="$1.28M" delta="+228%" />
+//         </div>
 
-        <div className="mt-6 grid gap-4 lg:grid-cols-2">
-          <ChartCard title="Organic traffic">
-            <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={trafficData}>
-                <defs>
-                  <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="var(--primary)" stopOpacity={0.6} />
-                    <stop offset="100%" stopColor="var(--primary)" stopOpacity={0} />
-                  </linearGradient>
-                </defs>
-                <XAxis dataKey="m" stroke="var(--muted-foreground)" fontSize={12} tickLine={false} axisLine={false} />
-                <Tooltip contentStyle={{ background: "var(--card)", border: "1px solid var(--border)", borderRadius: 12 }} />
-                <Area type="monotone" dataKey="v" stroke="var(--primary)" strokeWidth={2} fill="url(#g1)" />
-              </AreaChart>
-            </ResponsiveContainer>
-          </ChartCard>
-          <ChartCard title="Qualified leads">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={leadsData}>
-                <XAxis dataKey="m" stroke="var(--muted-foreground)" fontSize={12} tickLine={false} axisLine={false} />
-                <Tooltip contentStyle={{ background: "var(--card)", border: "1px solid var(--border)", borderRadius: 12 }} />
-                <Bar dataKey="v" fill="var(--secondary)" radius={[8, 8, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
-          </ChartCard>
-        </div>
-      </div>
-    </section>
-  );
-}
+//         <div className="mt-6 grid gap-4 lg:grid-cols-2">
+//           <ChartCard title="Organic traffic">
+//             <ResponsiveContainer width="100%" height="100%">
+//               <AreaChart data={trafficData}>
+//                 <defs>
+//                   <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+//                     <stop offset="0%" stopColor="var(--primary)" stopOpacity={0.6} />
+//                     <stop offset="100%" stopColor="var(--primary)" stopOpacity={0} />
+//                   </linearGradient>
+//                 </defs>
+//                 <XAxis dataKey="m" stroke="var(--muted-foreground)" fontSize={12} tickLine={false} axisLine={false} />
+//                 <Tooltip contentStyle={{ background: "var(--card)", border: "1px solid var(--border)", borderRadius: 12 }} />
+//                 <Area type="monotone" dataKey="v" stroke="var(--primary)" strokeWidth={2} fill="url(#g1)" />
+//               </AreaChart>
+//             </ResponsiveContainer>
+//           </ChartCard>
+//           <ChartCard title="Qualified leads">
+//             <ResponsiveContainer width="100%" height="100%">
+//               <BarChart data={leadsData}>
+//                 <XAxis dataKey="m" stroke="var(--muted-foreground)" fontSize={12} tickLine={false} axisLine={false} />
+//                 <Tooltip contentStyle={{ background: "var(--card)", border: "1px solid var(--border)", borderRadius: 12 }} />
+//                 <Bar dataKey="v" fill="var(--secondary)" radius={[8, 8, 0, 0]} />
+//               </BarChart>
+//             </ResponsiveContainer>
+//           </ChartCard>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }
 
-function KPI({ label, value, delta }: { label: string; value: string; delta: string }) {
-  return (
-    <div className="rounded-2xl border border-border bg-surface p-4">
-      <div className="text-xs uppercase tracking-wider text-muted-foreground">{label}</div>
-      <div className="mt-1 font-display text-2xl font-bold">{value}</div>
-      <div className="mt-1 text-xs font-medium text-emerald-600 dark:text-emerald-400">{delta}</div>
-    </div>
-  );
-}
+// function KPI({ label, value, delta }: { label: string; value: string; delta: string }) {
+//   return (
+//     <div className="rounded-2xl border border-border bg-surface p-4">
+//       <div className="text-xs uppercase tracking-wider text-muted-foreground">{label}</div>
+//       <div className="mt-1 font-display text-2xl font-bold">{value}</div>
+//       <div className="mt-1 text-xs font-medium text-emerald-600 dark:text-emerald-400">{delta}</div>
+//     </div>
+//   );
+// }
 
-function ChartCard({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <div className="rounded-2xl border border-border bg-surface p-4">
-      <div className="mb-3 flex items-center justify-between">
-        <div className="text-sm font-medium">{title}</div>
-        <div className="text-xs text-muted-foreground">8 mo</div>
-      </div>
-      <div className="h-56">{children}</div>
-    </div>
-  );
-}
+// function ChartCard({ title, children }: { title: string; children: React.ReactNode }) {
+//   return (
+//     <div className="rounded-2xl border border-border bg-surface p-4">
+//       <div className="mb-3 flex items-center justify-between">
+//         <div className="text-sm font-medium">{title}</div>
+//         <div className="text-xs text-muted-foreground">8 mo</div>
+//       </div>
+//       <div className="h-56">{children}</div>
+//     </div>
+//   );
+// }
 
 /* ---------------- PROCESS ---------------- */
 const STEPS = [
@@ -687,41 +687,41 @@ function Industries() {
 }
 
 /* ---------------- FAQ ---------------- */
-const FAQS = [
-  { q: "How long does SEO take to show results?", a: "Typically 3–6 months for meaningful organic growth, with foundational fixes (technical, on-page) showing within 4–6 weeks. We share progress weekly." },
-  { q: "What's a realistic budget for paid ads?", a: "We work with brands starting at $5k/mo in ad spend. Below that, we'll usually recommend SEO or organic social first to maximize ROI." },
-  { q: "Do you provide reports?", a: "Better — every client gets a live dashboard updated daily, plus a strategic review call every two weeks." },
-  { q: "Can you work with local businesses?", a: "Absolutely. About 30% of our roster is local. We have specific playbooks for GBP, local SEO and geo-targeted paid." },
-  { q: "What industries do you serve?", a: "E-commerce, SaaS, healthcare, real estate, education, finance, restaurants and more. If you're unsure, just ask." },
-];
+// const FAQS = [
+//   { q: "How long does SEO take to show results?", a: "Typically 3–6 months for meaningful organic growth, with foundational fixes (technical, on-page) showing within 4–6 weeks. We share progress weekly." },
+//   { q: "What's a realistic budget for paid ads?", a: "We work with brands starting at $5k/mo in ad spend. Below that, we'll usually recommend SEO or organic social first to maximize ROI." },
+//   { q: "Do you provide reports?", a: "Better — every client gets a live dashboard updated daily, plus a strategic review call every two weeks." },
+//   { q: "Can you work with local businesses?", a: "Absolutely. About 30% of our roster is local. We have specific playbooks for GBP, local SEO and geo-targeted paid." },
+//   { q: "What industries do you serve?", a: "E-commerce, SaaS, healthcare, real estate, education, finance, restaurants and more. If you're unsure, just ask." },
+// ];
 
-function FaqSection() {
-  const [openIdx, setOpenIdx] = useState<number | null>(0);
-  return (
-    <section className="container-page py-24">
-      <SectionHeader eyebrow="FAQ" title="Questions we hear often" subtitle="Still wondering? Book a free 20-minute call." />
-      <div className="mx-auto mt-12 max-w-3xl divide-y divide-border rounded-3xl border border-border bg-card">
-        {FAQS.map((f, i) => {
-          const open = openIdx === i;
-          return (
-            <div key={f.q}>
-              <button
-                onClick={() => setOpenIdx(open ? null : i)}
-                className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
-              >
-                <span className="font-display font-semibold">{f.q}</span>
-                <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full border border-border">
-                  {open ? <Minus className="h-3.5 w-3.5" /> : <Plus className="h-3.5 w-3.5" />}
-                </span>
-              </button>
-              {open && <div className="px-6 pb-6 text-sm text-muted-foreground">{f.a}</div>}
-            </div>
-          );
-        })}
-      </div>
-    </section>
-  );
-}
+// function FaqSection() {
+//   const [openIdx, setOpenIdx] = useState<number | null>(0);
+//   return (
+//     <section className="container-page py-24">
+//       <SectionHeader eyebrow="FAQ" title="Questions we hear often" subtitle="Still wondering? Book a free 20-minute call." />
+//       <div className="mx-auto mt-12 max-w-3xl divide-y divide-border rounded-3xl border border-border bg-card">
+//         {FAQS.map((f, i) => {
+//           const open = openIdx === i;
+//           return (
+//             <div key={f.q}>
+//               <button
+//                 onClick={() => setOpenIdx(open ? null : i)}
+//                 className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
+//               >
+//                 <span className="font-display font-semibold">{f.q}</span>
+//                 <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full border border-border">
+//                   {open ? <Minus className="h-3.5 w-3.5" /> : <Plus className="h-3.5 w-3.5" />}
+//                 </span>
+//               </button>
+//               {open && <div className="px-6 pb-6 text-sm text-muted-foreground">{f.a}</div>}
+//             </div>
+//           );
+//         })}
+//       </div>
+//     </section>
+//   );
+// }
 
 /* ---------------- CONTACT CTA ---------------- */
 type AuditForm = {
