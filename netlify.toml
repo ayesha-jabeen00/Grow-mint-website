@@ -1,0 +1,7 @@
+[build]
+  command = "NITRO_PRESET=netlify npm run build"
+  publish = "dist/client"
+
+# Nitro's `netlify` preset emits the SSR handler under
+# .netlify/functions-internal/ and writes a `_redirects` file that routes
+# all non-asset requests to it. No extra redirect config is required.
