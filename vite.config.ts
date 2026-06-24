@@ -7,6 +7,10 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
+  // Force-enable Nitro when this repo is built outside Lovable (Vercel/Netlify/GitHub CI).
+  // Without this, @lovable.dev/vite-tanstack-config skips the deploy plugin and only writes
+  // dist/client + dist/server. With Nitro enabled, NITRO_PRESET=vercel emits .vercel/output.
+  nitro: true,
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
