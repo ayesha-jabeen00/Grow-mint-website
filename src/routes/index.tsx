@@ -906,7 +906,7 @@ function ContactCta() {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
-          access_key: "a9f25c34-33e6-47cb-858a-21514d6d63e0",
+          access_key: "c0103624-17db-4df5-ba37-3b7762761461",
           subject: "New Free Marketing Audit Request",
           ...form,
         }),
@@ -949,13 +949,13 @@ function ContactCta() {
         </div>
 
         <form onSubmit={onSubmit} noValidate className="rounded-3xl border border-background/15 bg-background/5 p-6 backdrop-blur md:p-8">
-          <input type="hidden" name="access_key" value="a9f25c34-33e6-47cb-858a-21514d6d63e0" />
+          <input type="hidden" name="access_key" value="c0103624-17db-4df5-ba37-3b7762761461" />
           <div className="grid gap-4 md:grid-cols-2">
             <Field label="Name" placeholder="Jane Doe" value={form.name} onChange={(e) => update("name")(e.target.value)} error={errors.name} />
             <Field label="Business name" placeholder="Acme Co." value={form.businessName} onChange={(e) => update("businessName")(e.target.value)} />
             <Field label="Email" type="email" placeholder="jane@acme.com" value={form.email} onChange={(e) => update("email")(e.target.value)} error={errors.email} />
-            <Field label="Phone" placeholder="+1 555 000 0000" value={form.phone} onChange={(e) => update("phone")(e.target.value)} error={errors.phone} />
-            <SelectField label="Monthly marketing budget" options={["< $5k", "$5k – $15k", "$15k – $50k", "$50k+"]} value={form.budget} onChange={update("budget")} error={errors.budget} />
+            <Field label="Phone" placeholder="+91 12345 67890" value={form.phone} onChange={(e) => update("phone")(e.target.value)} error={errors.phone} />
+            <SelectField label="Monthly marketing budget" options={["< ₹5k", "₹5k – ₹15k", "₹15k – ₹50k", "₹50k+"]} value={form.budget} onChange={update("budget")} error={errors.budget} />
             <SelectField label="Services interested in" options={["SEO", "Google Ads", "Meta Ads", "Web Development", "Full-funnel"]} value={form.services} onChange={update("services")} error={errors.services} />
           </div>
           <div className="mt-4">

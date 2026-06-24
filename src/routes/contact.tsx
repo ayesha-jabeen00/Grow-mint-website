@@ -56,8 +56,8 @@ function ContactPage() {
         Accept: "application/json",
       },
       body: JSON.stringify({
-        access_key: "a9f25c34-33e6-47cb-858a-21514d6d63e0",
-        subject: "New Contact Form Submission - Hash Orbit",
+        access_key: "c0103624-17db-4df5-ba37-3b7762761461",
+        subject: "New Contact Form Submission - GROWMINT",
 
         name: formData.name,
         email: formData.email,
@@ -143,7 +143,7 @@ function ContactPage() {
                <input
     type="hidden"
     name="access_key"
-    value="a9f25c34-33e6-47cb-858a-21514d6d63e0"
+    value="c0103624-17db-4df5-ba37-3b7762761461"
   />
               <div className="grid gap-4 md:grid-cols-2">
                 <div>
@@ -244,13 +244,13 @@ function ContactPage() {
             <InfoCard
               icon={<Mail className="h-5 w-5 text-primary" />}
               title="Email Us"
-              value="info@hashorbit.com"
+              value="Growmintdigitals@gmail.com"
             />
 
             <InfoCard
               icon={<Phone className="h-5 w-5 text-primary" />}
               title="Call Us"
-              value="+91 77997 70919"
+              value="+91 12345 67890"
             />
 
             <InfoCard

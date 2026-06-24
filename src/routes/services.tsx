@@ -37,10 +37,7 @@ const SERVICES = [
   { icon: Video, name: "Video Marketing", desc: "UGC, ad creative and YouTube growth." },
   { icon: TrendingUp, name: "Performance Marketing", desc: "Full-funnel attribution and CRO." },
   { icon: Sparkles, name: "Brand Strategy", desc: "Positioning, story and visual identity." },
-  // { icon: Zap, name: "Marketing Automation", desc: "HubSpot, Klaviyo and Customer.io builds." },
-  // { icon: Mail, name: "Email Marketing", desc: "Flows and campaigns people actually open." },
   { icon: Globe, name: "Website Development", desc: "Fast, SEO-friendly sites that convert." },
-  // { icon: GitBranch, name: "Funnel Building", desc: "Lead magnets, landers and nurture." },
 ];
 
 const DEMO_WEBSITES = [
@@ -126,35 +123,37 @@ const DEMO_WEBSITES = [
   },
 ];
 
-// Pricing Modal Component
+// Updated Pricing Modal Component
 interface PricingModalProps {
   isOpen: boolean;
   onClose: () => void;
   selectedPackage: string;
-  onSubmit: (data: FormData) => void;
+  onSubmit: (data: PricingFormData) => void;
   isLoading: boolean;
 }
 
-interface FormData {
+interface PricingFormData {
   fullName: string;
   phone: string;
   email: string;
-  company: string;
+  businessName: string;
+  instagramHandle: string;
   requirements: string;
 }
 
 function PricingModal({ isOpen, onClose, selectedPackage, onSubmit, isLoading }: PricingModalProps) {
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<PricingFormData>({
     fullName: '',
     phone: '',
     email: '',
-    company: '',
+    businessName: '',
+    instagramHandle: '',
     requirements: '',
   });
-  const [errors, setErrors] = useState<Partial<FormData>>({});
+  const [errors, setErrors] = useState<Partial<PricingFormData>>({});
 
   const validateForm = (): boolean => {
-    const newErrors: Partial<FormData> = {};
+    const newErrors: Partial<PricingFormData> = {};
     
     if (!formData.fullName.trim()) {
       newErrors.fullName = 'Full name is required';
@@ -181,7 +180,7 @@ function PricingModal({ isOpen, onClose, selectedPackage, onSubmit, isLoading }:
     }
   };
 
-  const handleChange = (field: keyof FormData, value: string) => {
+  const handleChange = (field: keyof PricingFormData, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
     if (errors[field]) {
       setErrors(prev => ({ ...prev, [field]: undefined }));
@@ -197,15 +196,18 @@ function PricingModal({ isOpen, onClose, selectedPackage, onSubmit, isLoading }:
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="sticky top-0 z-10 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 p-6 rounded-t-3xl">
+        <div className="sticky top-0 z-10 bg-white dark:bg-gray-900 border-b border-green-100 dark:border-green-900/30 p-6 rounded-t-3xl">
           <div className="flex justify-between items-start">
             <div className="flex-1">
-              <div className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 mb-3">
-                <span className="text-xs font-medium text-primary">Selected Package</span>
+              <div className="inline-flex items-center rounded-full bg-green-100 dark:bg-green-900/30 px-3 py-1 mb-3">
+                <span className="text-xs font-medium text-green-700 dark:text-green-300">Selected Package</span>
               </div>
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
-                {selectedPackage}
+                Get Started With {selectedPackage}
               </h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                Fill in your details and we'll contact you with a customized strategy and package details.
+              </p>
             </div>
             <button
               onClick={onClose}
@@ -214,14 +216,11 @@ function PricingModal({ isOpen, onClose, selectedPackage, onSubmit, isLoading }:
               <X className="h-5 w-5 text-gray-500 dark:text-gray-400" />
             </button>
           </div>
-          <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
-            Please fill in your details to continue with this package
-          </p>
         </div>
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="p-6 space-y-5">
-          {/* Full Name */}
+          {/* Full Name - Required */}
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
               Full Name <span className="text-red-500">*</span>
@@ -233,8 +232,8 @@ function PricingModal({ isOpen, onClose, selectedPackage, onSubmit, isLoading }:
               className={`w-full px-4 py-3 rounded-xl border ${
                 errors.fullName 
                   ? 'border-red-500 focus:border-red-500' 
-                  : 'border-gray-300 dark:border-gray-700 focus:border-primary'
-              } bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-primary/20`}
+                  : 'border-gray-300 dark:border-gray-700 focus:border-green-500'
+              } bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-green-500/20`}
               placeholder="John Doe"
             />
             {errors.fullName && (
@@ -242,7 +241,7 @@ function PricingModal({ isOpen, onClose, selectedPackage, onSubmit, isLoading }:
             )}
           </div>
 
-          {/* Phone Number */}
+          {/* Phone Number - Required */}
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
               Phone Number <span className="text-red-500">*</span>
@@ -254,8 +253,8 @@ function PricingModal({ isOpen, onClose, selectedPackage, onSubmit, isLoading }:
               className={`w-full px-4 py-3 rounded-xl border ${
                 errors.phone 
                   ? 'border-red-500 focus:border-red-500' 
-                  : 'border-gray-300 dark:border-gray-700 focus:border-primary'
-              } bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-primary/20`}
+                  : 'border-gray-300 dark:border-gray-700 focus:border-green-500'
+              } bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-green-500/20`}
               placeholder="+91 12345 67890"
             />
             {errors.phone && (
@@ -263,7 +262,7 @@ function PricingModal({ isOpen, onClose, selectedPackage, onSubmit, isLoading }:
             )}
           </div>
 
-          {/* Email Address */}
+          {/* Email Address - Required */}
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
               Email Address <span className="text-red-500">*</span>
@@ -275,8 +274,8 @@ function PricingModal({ isOpen, onClose, selectedPackage, onSubmit, isLoading }:
               className={`w-full px-4 py-3 rounded-xl border ${
                 errors.email 
                   ? 'border-red-500 focus:border-red-500' 
-                  : 'border-gray-300 dark:border-gray-700 focus:border-primary'
-              } bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-primary/20`}
+                  : 'border-gray-300 dark:border-gray-700 focus:border-green-500'
+              } bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-green-500/20`}
               placeholder="john@example.com"
             />
             {errors.email && (
@@ -284,30 +283,47 @@ function PricingModal({ isOpen, onClose, selectedPackage, onSubmit, isLoading }:
             )}
           </div>
 
-          {/* Company Name */}
+          {/* Business Name - Optional */}
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Company / Business Name
+              Business Name <span className="text-gray-400 text-xs">(Optional)</span>
             </label>
             <input
               type="text"
-              value={formData.company}
-              onChange={(e) => handleChange('company', e.target.value)}
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 focus:border-primary bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-primary/20"
-              placeholder="Your Company Name"
+              value={formData.businessName}
+              onChange={(e) => handleChange('businessName', e.target.value)}
+              className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 focus:border-green-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-green-500/20"
+              placeholder="Your Business Name"
             />
           </div>
 
-          {/* Project Requirements */}
+          {/* Instagram Handle - Optional */}
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Project Requirements
+              Instagram Handle <span className="text-gray-400 text-xs">(Optional)</span>
+            </label>
+            <div className="relative">
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">@</span>
+              <input
+                type="text"
+                value={formData.instagramHandle}
+                onChange={(e) => handleChange('instagramHandle', e.target.value)}
+                className="w-full pl-8 pr-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 focus:border-green-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-green-500/20"
+                placeholder="yourbrand"
+              />
+            </div>
+          </div>
+
+          {/* Project Requirements - Optional */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              Project Requirements <span className="text-gray-400 text-xs">(Optional)</span>
             </label>
             <textarea
               value={formData.requirements}
               onChange={(e) => handleChange('requirements', e.target.value)}
-              rows={4}
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 focus:border-primary bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-primary/20 resize-none"
+              rows={3}
+              className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 focus:border-green-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-green-500/20 resize-none"
               placeholder="Tell us about your project requirements, goals, and expectations..."
             />
           </div>
@@ -318,14 +334,14 @@ function PricingModal({ isOpen, onClose, selectedPackage, onSubmit, isLoading }:
               type="button"
               variant="outline"
               onClick={onClose}
-              className="flex-1 rounded-full"
+              className="flex-1 rounded-full border-2 border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800"
             >
               Cancel
             </Button>
             <Button
               type="submit"
               disabled={isLoading}
-              className="flex-1 rounded-full bg-primary hover:bg-primary/90 transition-all duration-300"
+              className="flex-1 rounded-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white shadow-lg shadow-green-500/30 transition-all duration-300"
             >
               {isLoading ? (
                 <>
@@ -334,7 +350,7 @@ function PricingModal({ isOpen, onClose, selectedPackage, onSubmit, isLoading }:
                 </>
               ) : (
                 <>
-                  Continue to WhatsApp
+                  Continue To WhatsApp
                   <Send className="ml-2 h-4 w-4" />
                 </>
               )}
@@ -367,18 +383,19 @@ function ServicesPage() {
   };
 
   const handlePricingButtonClick = (packageName: string) => {
+    console.log("Opening modal for:", packageName); // Debug log
     setSelectedPricingPackage(packageName);
     setIsPricingModalOpen(true);
   };
 
-  const handlePricingFormSubmit = async (formData: FormData) => {
+  const handlePricingFormSubmit = async (formData: PricingFormData) => {
     setIsLoading(true);
     
     // Simulate loading state for better UX
     await new Promise(resolve => setTimeout(resolve, 500));
     
     // Create the pre-filled WhatsApp message
-    const message = `Hi Hash Orbit,
+    const message = `Hi GrowMint Team,
 
 I am interested in the ${selectedPricingPackage}.
 
@@ -387,16 +404,17 @@ My Details:
 Name: ${formData.fullName}
 Phone: ${formData.phone}
 Email: ${formData.email}
-Company: ${formData.company || 'Not specified'}
+Business: ${formData.businessName || 'Not specified'}
+Instagram: ${formData.instagramHandle ? '@' + formData.instagramHandle : 'Not specified'}
 
-Project Requirements:
+Requirements:
 ${formData.requirements || 'No specific requirements mentioned yet'}
 
 Please share:
-• Features included
-• Project timeline
-• Pricing details
-• Payment terms
+• Package details
+• Content strategy
+• Timeline
+• Payment process
 
 Thank you.`;
 
@@ -446,191 +464,268 @@ Thank you.`;
         </div>
       </section>
 
-      {/* Pricing Packages Section */}
+      {/* Pricing Packages Section - Redesigned with Modal */}
       <section className="relative overflow-hidden py-24">
-        {/* Subtle background pattern with blurred blue gradient circles */}
+        {/* Background effects */}
         <div className="absolute inset-0 -z-10">
-          <div className="absolute top-0 -left-4 h-72 w-72 rounded-full bg-blue-500/20 blur-[100px] dark:bg-blue-500/10" />
-          <div className="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-blue-600/20 blur-[120px] dark:bg-blue-600/10" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-80 w-80 rounded-full bg-primary/10 blur-[100px]" />
+          <div className="absolute top-0 -left-4 h-72 w-72 rounded-full bg-green-500/20 blur-[100px] dark:bg-green-500/10" />
+          <div className="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-green-600/20 blur-[120px] dark:bg-green-600/10" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-80 w-80 rounded-full bg-green-400/10 blur-[100px]" />
         </div>
 
         <div className="container-page">
           {/* Section Header */}
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center rounded-full border border-border bg-background/50 backdrop-blur-sm px-4 py-1.5 mb-4">
-              <span className="text-xs font-medium uppercase tracking-wider text-primary">Pricing Plans</span>
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center rounded-full border border-green-200 dark:border-green-800 bg-green-50/50 dark:bg-green-950/30 backdrop-blur-sm px-4 py-1.5 mb-4">
+              <span className="text-xs font-medium uppercase tracking-wider text-green-600 dark:text-green-400">Packages</span>
             </div>
-            <h2 className="font-display text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
-              Choose The Perfect Growth Package
+            <h2 className="font-display text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl bg-gradient-to-r from-green-600 to-green-400 bg-clip-text text-transparent">
+              GROWMINT PACKAGES
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground text-lg">
-              Flexible plans designed for startups, businesses, and growing brands.
+              Content That Connects. Strategy That Grows.
             </p>
           </div>
 
           {/* Pricing Cards Grid */}
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 items-stretch">
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 items-center justify-items-center">
             
-            {/* Bronze Package */}
-            <div className="group relative rounded-3xl bg-white dark:bg-gray-900/50 backdrop-blur-sm border border-gray-200 dark:border-gray-800 p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl flex flex-col">
-              {/* Starter Badge */}
-              <div className="absolute -top-3 left-6">
-                <span className="inline-flex items-center rounded-full bg-gray-100 dark:bg-gray-800 px-3 py-1 text-xs font-semibold text-gray-600 dark:text-gray-400">
-                  Starter
-                </span>
-              </div>
-              
-              <div className="flex-1">
-                <h3 className="font-display text-2xl font-bold mb-2">BRONZE PACKAGE</h3>
-                <div className="mt-4 flex items-baseline gap-1">
-                  <span className="text-4xl font-bold">₹14,999</span>
+            {/* Starter Package */}
+            <div className="group relative w-full max-w-sm">
+              <div className="relative rounded-3xl bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border border-green-100/50 dark:border-green-900/30 p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl shadow-lg hover:shadow-green-500/10 flex flex-col h-full">
+                {/* Glow effect */}
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-green-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                <div className="relative flex-1">
+                  <div className="mb-4">
+                    <span className="inline-flex items-center rounded-full bg-green-100 dark:bg-green-900/30 px-3 py-1 text-xs font-semibold text-green-700 dark:text-green-300">
+                      STARTER
+                    </span>
+                  </div>
+                  
+                  <h3 className="font-display text-2xl font-bold mb-2 text-gray-900 dark:text-white">STARTER PACKAGE</h3>
+                  <p className="text-sm text-muted-foreground mb-6">Perfect For Startups & Small Businesses</p>
+                  
+                  <div className="mb-6">
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl font-bold text-green-600 dark:text-green-400">₹18,000</span>
+                      <span className="text-sm text-muted-foreground line-through">₹20,000</span>
+                    </div>
+                    <span className="text-xs text-muted-foreground">/month</span>
+                  </div>
+                  
+                  <ul className="space-y-3.5">
+                    <li className="flex items-start gap-3 text-sm">
+                      <div className="mt-0.5 flex-shrink-0 rounded-full bg-green-100 dark:bg-green-900/30 p-1">
+                        <div className="h-3.5 w-3.5 text-green-600 dark:text-green-400">✓</div>
+                      </div>
+                      <span className="text-gray-700 dark:text-gray-300">12 Reels / Month</span>
+                    </li>
+                    <li className="flex items-start gap-3 text-sm">
+                      <div className="mt-0.5 flex-shrink-0 rounded-full bg-green-100 dark:bg-green-900/30 p-1">
+                        <div className="h-3.5 w-3.5 text-green-600 dark:text-green-400">✓</div>
+                      </div>
+                      <span className="text-gray-700 dark:text-gray-300">Festival Creative Covers</span>
+                    </li>
+                    <li className="flex items-start gap-3 text-sm">
+                      <div className="mt-0.5 flex-shrink-0 rounded-full bg-green-100 dark:bg-green-900/30 p-1">
+                        <div className="h-3.5 w-3.5 text-green-600 dark:text-green-400">✓</div>
+                      </div>
+                      <span className="text-gray-700 dark:text-gray-300">Content Creation</span>
+                    </li>
+                    <li className="flex items-start gap-3 text-sm">
+                      <div className="mt-0.5 flex-shrink-0 rounded-full bg-green-100 dark:bg-green-900/30 p-1">
+                        <div className="h-3.5 w-3.5 text-green-600 dark:text-green-400">✓</div>
+                      </div>
+                      <span className="text-gray-700 dark:text-gray-300">Editing</span>
+                    </li>
+                    <li className="flex items-start gap-3 text-sm">
+                      <div className="mt-0.5 flex-shrink-0 rounded-full bg-green-100 dark:bg-green-900/30 p-1">
+                        <div className="h-3.5 w-3.5 text-green-600 dark:text-green-400">✓</div>
+                      </div>
+                      <span className="text-gray-700 dark:text-gray-300">1 Day Shoot Session</span>
+                    </li>
+                    <li className="flex items-start gap-3 text-sm">
+                      <div className="mt-0.5 flex-shrink-0 rounded-full bg-green-100 dark:bg-green-900/30 p-1">
+                        <div className="h-3.5 w-3.5 text-green-600 dark:text-green-400">✓</div>
+                      </div>
+                      <span className="text-gray-700 dark:text-gray-300">Monthly Content Calendar</span>
+                    </li>
+                  </ul>
                 </div>
                 
-                <ul className="mt-6 space-y-3">
-                  <li className="flex items-center gap-2 text-sm">
-                    <span className="text-primary">✓</span> Responsive Website
-                  </li>
-                  <li className="flex items-center gap-2 text-sm">
-                    <span className="text-primary">✓</span> 5 Pages
-                  </li>
-                  <li className="flex items-center gap-2 text-sm">
-                    <span className="text-primary">✓</span> Mobile Optimized
-                  </li>
-                  <li className="flex items-center gap-2 text-sm">
-                    <span className="text-primary">✓</span> Contact Form
-                  </li>
-                  <li className="flex items-center gap-2 text-sm">
-                    <span className="text-primary">✓</span> Basic SEO Setup
-                  </li>
-                  <li className="flex items-center gap-2 text-sm">
-                    <span className="text-primary">✓</span> WhatsApp Integration
-                  </li>
-                  <li className="flex items-center gap-2 text-sm">
-                    <span className="text-primary">✓</span> 1 Month Support
-                  </li>
-                </ul>
+     <Button
+  onClick={() => handlePricingButtonClick("Starter Package")}
+  className="relative z-20 mt-8 w-full rounded-full bg-green-600 text-white hover:bg-green-700 transition-all duration-300 hover:scale-105"
+>
+  Choose Starter
+</Button>
               </div>
-              
-              <Button
-                onClick={() => handlePricingButtonClick("Bronze Package")}
-                variant="outline"
-                className="mt-8 w-full rounded-full transition-all duration-300 hover:scale-105 hover:bg-primary hover:text-white hover:border-primary"
-              >
-                Get Started
-              </Button>
             </div>
 
-            {/* Silver Package - Most Popular */}
-            <div className="group relative rounded-3xl bg-white dark:bg-gray-900/50 backdrop-blur-sm p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl flex flex-col lg:scale-105 border-2 border-primary/30 shadow-xl">
-              {/* Floating Most Popular Badge */}
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                <span className="inline-flex animate-pulse items-center rounded-full bg-gradient-to-r from-primary to-blue-600 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-white shadow-lg">
-                  ⭐ MOST POPULAR
-                </span>
-              </div>
-              
-              {/* Animated border glow */}
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-primary/20 via-blue-500/20 to-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl -z-10" />
-              
-              <div className="flex-1">
-                <h3 className="font-display text-2xl font-bold mb-2">SILVER PACKAGE</h3>
-                <div className="mt-4 flex items-baseline gap-1">
-                  <span className="text-4xl font-bold">₹29,999</span>
-                </div>
+            {/* Growth Package - Most Popular */}
+            <div className="group relative w-full max-w-sm lg:-mt-8">
+              <div className="relative rounded-3xl bg-gradient-to-br from-green-50 via-white to-green-50/50 dark:from-green-950/30 dark:via-gray-900 dark:to-green-950/30 backdrop-blur-xl p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl shadow-xl shadow-green-500/20 border-2 border-green-400 dark:border-green-600 flex flex-col h-full">
+                {/* Animated gradient border glow */}
+                <div className="absolute -inset-0.5 rounded-3xl bg-gradient-to-r from-green-400 via-green-500 to-green-400 opacity-30 blur-xl group-hover:opacity-50 transition-opacity duration-500 -z-10" />
+                <div className="absolute -inset-0.5 rounded-3xl bg-gradient-to-r from-green-400 via-green-500 to-green-400 opacity-10 group-hover:opacity-30 transition-opacity duration-500 -z-10" />
                 
-                <ul className="mt-6 space-y-3">
-                  <li className="flex items-center gap-2 text-sm">
-                    <span className="text-primary">✓</span> Everything in Bronze
-                  </li>
-                  <li className="flex items-center gap-2 text-sm">
-                    <span className="text-primary">✓</span> Up to 10 Pages
-                  </li>
-                  <li className="flex items-center gap-2 text-sm">
-                    <span className="text-primary">✓</span> Advanced SEO Setup
-                  </li>
-                  <li className="flex items-center gap-2 text-sm">
-                    <span className="text-primary">✓</span> Blog Integration
-                  </li>
-                  <li className="flex items-center gap-2 text-sm">
-                    <span className="text-primary">✓</span> Google Analytics
-                  </li>
-                  <li className="flex items-center gap-2 text-sm">
-                    <span className="text-primary">✓</span> Social Media Integration
-                  </li>
-                  <li className="flex items-center gap-2 text-sm">
-                    <span className="text-primary">✓</span> Speed Optimization
-                  </li>
-                  <li className="flex items-center gap-2 text-sm">
-                    <span className="text-primary">✓</span> 3 Months Support
-                  </li>
-                </ul>
-              </div>
-              
-              <Button
-                onClick={() => handlePricingButtonClick("Silver Package")}
-                className="mt-8 w-full rounded-full bg-gradient-to-r from-primary to-blue-600 transition-all duration-300 hover:scale-105 hover:shadow-lg"
-              >
-                Most Popular
-              </Button>
-            </div>
-
-            {/* Gold Package */}
-            <div className="group relative rounded-3xl bg-gradient-to-br from-yellow-50 via-amber-50 to-white dark:from-yellow-950/20 dark:via-amber-950/20 dark:to-gray-900/50 backdrop-blur-sm border border-yellow-200 dark:border-yellow-800 p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl flex flex-col shadow-lg">
-              <div className="flex-1">
-                <h3 className="font-display text-2xl font-bold mb-2 bg-gradient-to-r from-yellow-600 to-amber-600 bg-clip-text text-transparent">
-                  GOLD PACKAGE
-                </h3>
-                <div className="mt-4 flex items-baseline gap-1">
-                  <span className="text-4xl font-bold bg-gradient-to-r from-yellow-600 to-amber-600 bg-clip-text text-transparent">
-                    ₹49,999
+                {/* Most Popular Badge */}
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
+                  <span className="inline-flex animate-pulse items-center rounded-full bg-gradient-to-r from-green-500 to-green-600 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-white shadow-lg shadow-green-500/30">
+                    ⭐ MOST POPULAR
                   </span>
                 </div>
                 
-                <ul className="mt-6 space-y-3">
-                  <li className="flex items-center gap-2 text-sm">
-                    <span className="text-yellow-600">✓</span> Everything in Silver
-                  </li>
-                  <li className="flex items-center gap-2 text-sm">
-                    <span className="text-yellow-600">✓</span> Unlimited Pages
-                  </li>
-                  <li className="flex items-center gap-2 text-sm">
-                    <span className="text-yellow-600">✓</span> Premium UI/UX Design
-                  </li>
-                  <li className="flex items-center gap-2 text-sm">
-                    <span className="text-yellow-600">✓</span> Custom Animations
-                  </li>
-                  <li className="flex items-center gap-2 text-sm">
-                    <span className="text-yellow-600">✓</span> Lead Generation Forms
-                  </li>
-                  <li className="flex items-center gap-2 text-sm">
-                    <span className="text-yellow-600">✓</span> CRM Integration
-                  </li>
-                  <li className="flex items-center gap-2 text-sm">
-                    <span className="text-yellow-600">✓</span> Advanced Performance Optimization
-                  </li>
-                  <li className="flex items-center gap-2 text-sm">
-                    <span className="text-yellow-600">✓</span> Priority Support
-                  </li>
-                  <li className="flex items-center gap-2 text-sm">
-                    <span className="text-yellow-600">✓</span> 6 Months Support
-                  </li>
-                </ul>
+                <div className="relative flex-1">
+                  <div className="mb-4">
+                    <span className="inline-flex items-center rounded-full bg-green-200 dark:bg-green-800/50 px-3 py-1 text-xs font-semibold text-green-800 dark:text-green-200">
+                      GROWTH
+                    </span>
+                  </div>
+                  
+                  <h3 className="font-display text-2xl font-bold mb-2 text-gray-900 dark:text-white">GROWTH PACKAGE</h3>
+                  <p className="text-sm text-muted-foreground mb-6">Perfect For Growing Businesses</p>
+                  
+                  <div className="mb-6">
+                    <div className="flex items-center gap-3">
+                      <span className="text-3xl font-bold text-green-600 dark:text-green-400">₹24,000</span>
+                      <span className="text-sm text-muted-foreground line-through">₹26,000</span>
+                    </div>
+                    <span className="text-xs text-muted-foreground">/month</span>
+                  </div>
+                  
+                  <ul className="space-y-3.5">
+                    <li className="flex items-start gap-3 text-sm">
+                      <div className="mt-0.5 flex-shrink-0 rounded-full bg-green-500 dark:bg-green-400 p-1">
+                        <div className="h-3.5 w-3.5 text-white">✓</div>
+                      </div>
+                      <span className="text-gray-700 dark:text-gray-300 font-medium">15 Reels / Month</span>
+                    </li>
+                    <li className="flex items-start gap-3 text-sm">
+                      <div className="mt-0.5 flex-shrink-0 rounded-full bg-green-500 dark:bg-green-400 p-1">
+                        <div className="h-3.5 w-3.5 text-white">✓</div>
+                      </div>
+                      <span className="text-gray-700 dark:text-gray-300">Festival Creative Covers</span>
+                    </li>
+                    <li className="flex items-start gap-3 text-sm">
+                      <div className="mt-0.5 flex-shrink-0 rounded-full bg-green-500 dark:bg-green-400 p-1">
+                        <div className="h-3.5 w-3.5 text-white">✓</div>
+                      </div>
+                      <span className="text-gray-700 dark:text-gray-300">Content Creation</span>
+                    </li>
+                    <li className="flex items-start gap-3 text-sm">
+                      <div className="mt-0.5 flex-shrink-0 rounded-full bg-green-500 dark:bg-green-400 p-1">
+                        <div className="h-3.5 w-3.5 text-white">✓</div>
+                      </div>
+                      <span className="text-gray-700 dark:text-gray-300">Professional Editing</span>
+                    </li>
+                    <li className="flex items-start gap-3 text-sm">
+                      <div className="mt-0.5 flex-shrink-0 rounded-full bg-green-500 dark:bg-green-400 p-1">
+                        <div className="h-3.5 w-3.5 text-white">✓</div>
+                      </div>
+                      <span className="text-gray-700 dark:text-gray-300">2-Day Shoot Session</span>
+                    </li>
+                    <li className="flex items-start gap-3 text-sm">
+                      <div className="mt-0.5 flex-shrink-0 rounded-full bg-green-500 dark:bg-green-400 p-1">
+                        <div className="h-3.5 w-3.5 text-white">✓</div>
+                      </div>
+                      <span className="text-gray-700 dark:text-gray-300">Monthly Content Calendar</span>
+                    </li>
+                  </ul>
+                </div>
+                
+                <Button
+                  onClick={() => handlePricingButtonClick("Growth Package")}
+                  className="mt-8 w-full rounded-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white shadow-lg shadow-green-500/30 transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                >
+                  Choose Growth
+                </Button>
               </div>
-              
-              <Button
-                onClick={() => handlePricingButtonClick("Gold Package")}
-                variant="brand"
-                className="mt-8 w-full rounded-full bg-gradient-to-r from-yellow-500 via-amber-500 to-yellow-500 transition-all duration-300 hover:scale-105 hover:shadow-lg"
-              >
-                Get Premium
-              </Button>
+            </div>
+
+            {/* Premium Package */}
+            <div className="group relative w-full max-w-sm">
+              <div className="relative rounded-3xl bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border border-green-100/50 dark:border-green-900/30 p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl shadow-lg hover:shadow-green-500/10 flex flex-col h-full">
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-green-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                <div className="relative flex-1">
+                  <div className="mb-4">
+                    <span className="inline-flex items-center rounded-full bg-green-100 dark:bg-green-900/30 px-3 py-1 text-xs font-semibold text-green-700 dark:text-green-300">
+                      PREMIUM
+                    </span>
+                  </div>
+                  
+                  <h3 className="font-display text-2xl font-bold mb-2 text-gray-900 dark:text-white">PREMIUM PACKAGE</h3>
+                  <p className="text-sm text-muted-foreground mb-6">Perfect For Established Brands</p>
+                  
+                  <div className="mb-6">
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl font-bold text-green-600 dark:text-green-400">₹30,000</span>
+                      <span className="text-sm text-muted-foreground line-through">₹32,000</span>
+                    </div>
+                    <span className="text-xs text-muted-foreground">/month</span>
+                  </div>
+                  
+                  <ul className="space-y-3.5">
+                    <li className="flex items-start gap-3 text-sm">
+                      <div className="mt-0.5 flex-shrink-0 rounded-full bg-green-100 dark:bg-green-900/30 p-1">
+                        <div className="h-3.5 w-3.5 text-green-600 dark:text-green-400">✓</div>
+                      </div>
+                      <span className="text-gray-700 dark:text-gray-300">20 Reels / Month</span>
+                    </li>
+                    <li className="flex items-start gap-3 text-sm">
+                      <div className="mt-0.5 flex-shrink-0 rounded-full bg-green-100 dark:bg-green-900/30 p-1">
+                        <div className="h-3.5 w-3.5 text-green-600 dark:text-green-400">✓</div>
+                      </div>
+                      <span className="text-gray-700 dark:text-gray-300">Festival Creative Covers</span>
+                    </li>
+                    <li className="flex items-start gap-3 text-sm">
+                      <div className="mt-0.5 flex-shrink-0 rounded-full bg-green-100 dark:bg-green-900/30 p-1">
+                        <div className="h-3.5 w-3.5 text-green-600 dark:text-green-400">✓</div>
+                      </div>
+                      <span className="text-gray-700 dark:text-gray-300">Content Creation</span>
+                    </li>
+                    <li className="flex items-start gap-3 text-sm">
+                      <div className="mt-0.5 flex-shrink-0 rounded-full bg-green-100 dark:bg-green-900/30 p-1">
+                        <div className="h-3.5 w-3.5 text-green-600 dark:text-green-400">✓</div>
+                      </div>
+                      <span className="text-gray-700 dark:text-gray-300">Professional Editing</span>
+                    </li>
+                    <li className="flex items-start gap-3 text-sm">
+                      <div className="mt-0.5 flex-shrink-0 rounded-full bg-green-100 dark:bg-green-900/30 p-1">
+                        <div className="h-3.5 w-3.5 text-green-600 dark:text-green-400">✓</div>
+                      </div>
+                      <span className="text-gray-700 dark:text-gray-300">4-Day Shoot Session</span>
+                    </li>
+                    <li className="flex items-start gap-3 text-sm">
+                      <div className="mt-0.5 flex-shrink-0 rounded-full bg-green-100 dark:bg-green-900/30 p-1">
+                        <div className="h-3.5 w-3.5 text-green-600 dark:text-green-400">✓</div>
+                      </div>
+                      <span className="text-gray-700 dark:text-gray-300">Monthly Content Calendar</span>
+                    </li>
+                    <li className="flex items-start gap-3 text-sm">
+                      <div className="mt-0.5 flex-shrink-0 rounded-full bg-green-100 dark:bg-green-900/30 p-1">
+                        <div className="h-3.5 w-3.5 text-green-600 dark:text-green-400">✓</div>
+                      </div>
+                      <span className="text-gray-700 dark:text-gray-300">Monthly Performance Review</span>
+                    </li>
+                  </ul>
+                </div>
+                
+ <Button
+  onClick={() => handlePricingButtonClick("Premium Package")}
+  className="relative z-20 mt-8 w-full rounded-full bg-green-600 text-white hover:bg-green-700 transition-all duration-300 hover:scale-105"
+>
+  Choose Premium
+</Button>
+              </div>
             </div>
           </div>
 
           {/* Custom Package CTA */}
           <div className="mt-16 text-center">
-            <div className="inline-flex flex-col items-center gap-4 rounded-2xl border border-border bg-background/50 backdrop-blur-sm px-8 py-6">
+            <div className="inline-flex flex-col items-center gap-4 rounded-2xl border border-green-200 dark:border-green-800 bg-green-50/30 dark:bg-green-950/20 backdrop-blur-sm px-8 py-6">
               <p className="text-lg font-medium text-muted-foreground">
                 Need a custom package?
               </p>
@@ -638,7 +733,7 @@ Thank you.`;
                 onClick={() => handlePricingButtonClick("Custom Package")}
                 variant="outline"
                 size="lg"
-                className="rounded-full transition-all duration-300 hover:scale-105 hover:bg-primary hover:text-white hover:border-primary"
+                className="rounded-full border-2 border-green-200 dark:border-green-800 text-green-700 dark:text-green-300 hover:bg-green-50 dark:hover:bg-green-950/50 hover:border-green-500 transition-all duration-300 hover:scale-105"
               >
                 Request Custom Quote
                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -682,7 +777,7 @@ Thank you.`;
               className="group overflow-hidden rounded-3xl border border-border bg-card shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl"
             >
               {/* Screenshot Placeholder */}
-            <div className="h-48 bg-gradient-to-br from-[#EAF3FF] to-[#0F6EF7]/20 flex items-center justify-center text-6xl">
+              <div className="h-48 bg-gradient-to-br from-[#EAF3FF] to-[#0F6EF7]/20 flex items-center justify-center text-6xl">
                 {site.imagePlaceholder}
               </div>
               
@@ -704,7 +799,7 @@ Thank you.`;
                   {site.tags.map((tag) => (
                     <span
                       key={tag}
-                     className="rounded-full bg-[#0F6EF7]/10 text-[#0F6EF7] px-3 py-1 text-xs"
+                      className="rounded-full bg-[#0F6EF7]/10 text-[#0F6EF7] px-3 py-1 text-xs"
                     >
                       {tag}
                     </span>
@@ -749,13 +844,13 @@ Thank you.`;
               <h3 className="font-display text-xl font-bold">{selectedWebsite.name}</h3>
               <button 
                 onClick={() => setSelectedWebsite(null)}
-               className="p-1 rounded-full hover:bg-[#0F6EF7]/10 hover:text-[#0F6EF7] transition-colors"
+                className="p-1 rounded-full hover:bg-[#0F6EF7]/10 hover:text-[#0F6EF7] transition-colors"
               >
                 <X className="h-5 w-5" />
               </button>
             </div>
             <div className="p-6">
-             <div className="h-40 bg-gradient-to-br from-[#EAF3FF] to-[#0F6EF7]/20 flex items-center justify-center text-6xl rounded-xl mb-4">
+              <div className="h-40 bg-gradient-to-br from-[#EAF3FF] to-[#0F6EF7]/20 flex items-center justify-center text-6xl rounded-xl mb-4">
                 {selectedWebsite.imagePlaceholder}
               </div>
               <p className="text-sm text-primary font-medium mb-2">{selectedWebsite.category}</p>
@@ -771,13 +866,13 @@ Thank you.`;
                 </div>
               </div>
               <div className="flex gap-3">
-               <Button
-  variant="outline"
-  className="flex-1 hover:bg-[#0F6EF7] hover:text-white hover:border-[#0F6EF7]"
-  onClick={() => setSelectedWebsite(null)}
->
-  Close
-</Button>
+                <Button
+                  variant="outline"
+                  className="flex-1 hover:bg-[#0F6EF7] hover:text-white hover:border-[#0F6EF7]"
+                  onClick={() => setSelectedWebsite(null)}
+                >
+                  Close
+                </Button>
                 <Button 
                   className="flex-1 hover:bg-[#0F6EF7] hover:text-white hover:border-[#0F6EF7]"
                   onClick={() => {

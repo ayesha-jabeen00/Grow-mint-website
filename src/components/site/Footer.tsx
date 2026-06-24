@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Twitter, Linkedin, Instagram, Youtube, MessageCircle } from "lucide-react";
-import logo from "@/assets/logos/hash-orbit-logo.png";
+import logo from "@/assets/images/growmintlogo.png";
 export function Footer() {
   const handleWhatsAppClick = () => {
     window.open("https://wa.me/917799770919", "_blank");
@@ -61,14 +61,14 @@ export function Footer() {
             <div className="mt-5 space-y-3 text-sm text-white/70">
               <p className="flex flex-col">
                 <span className="text-white/50 text-xs uppercase tracking-wider mb-1">Phone</span>
-                <a href="tel:+917799770919" className="hover:text-white transition-colors">
-                  +91 77997 70919
+                <a href="tel:+911234567890" className="hover:text-white transition-colors">
+                  +91 12345 67890
                 </a>
               </p>
               <p className="flex flex-col">
                 <span className="text-white/50 text-xs uppercase tracking-wider mb-1">Email</span>
-                <a href="mailto:info@hashorbit.com" className="hover:text-white transition-colors break-all">
-                  info@hashorbit.com
+                <a href="mailto:Growmintdigitals@gmail.com" className="hover:text-white transition-colors break-all">
+                  Growmintdigitals@gmail.com
                 </a>
               </p>
               <p className="flex flex-col">
@@ -90,7 +90,7 @@ export function Footer() {
 
         <div className="mt-12 border-t border-white/10 pt-6">
           <p className="text-xs text-white/60">
-            © {new Date().getFullYear()} Hash Orbit. All rights reserved.
+            © {new Date().getFullYear()} Grow Mint . All rights reserved.
           </p>
         </div>
       </div>

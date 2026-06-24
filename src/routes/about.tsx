@@ -4,13 +4,13 @@ import { Button } from "@/components/ui/button";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About — Northwind Performance Marketing Agency" },
+      { title: "About — Grow Mint Marketing Agency" },
       {
         name: "description",
         content:
           "Meet the team behind 200+ scaled brands. Senior strategists, transparent reporting, and a relentless focus on results.",
       },
-      { property: "og:title", content: "About Northwind" },
+      { property: "og:title", content: "About Grow Mint" },
       {
         property: "og:description",
         content: "Meet the team behind 200+ scaled brands.",
@@ -35,7 +35,7 @@ function AboutPage() {
 
         <div className="mt-6 space-y-4 text-lg text-muted-foreground">
           <p>
-            Founded in 2026, Hash Orbit helps ambitious brands grow through
+            Founded in 2026, Grow Mint helps ambitious brands grow through
             strategy, creative execution, and performance marketing.
           </p>
 
