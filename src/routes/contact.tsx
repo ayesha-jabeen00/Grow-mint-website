@@ -9,11 +9,11 @@ import { Textarea } from "@/components/ui/textarea";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact Hash Orbit | Let's Build Your Brand" },
+      { title: "Contact GROWMINT | Let's Build Your Brand" },
       {
         name: "description",
         content:
-          "Ready to transform your digital presence? Contact Hash Orbit for web development, digital marketing, branding, and growth solutions.",
+          "Ready to transform your digital presence? Contact GROWMINT for web development, digital marketing, branding, and growth solutions.",
       },
     ],
   }),
@@ -99,11 +99,11 @@ function ContactPage() {
 
   const handleWhatsApp = () => {
     const message = encodeURIComponent(
-      "Hi Hash Orbit! I'm interested in your services."
+      "Hi GROWMINT! I'm interested in your services."
     );
 
     window.open(
-      `https://wa.me/917799770919?text=${message}`,
+      `https://wa.me/918688376662?text=${message}`,
       "_blank"
     );
   };
@@ -250,7 +250,7 @@ function ContactPage() {
             <InfoCard
               icon={<Phone className="h-5 w-5 text-primary" />}
               title="Call Us"
-              value="+91 12345 67890"
+              value=" +91 8688376662"
             />
 
             <InfoCard

@@ -13,8 +13,8 @@ const links = [
   { to: "/contact", label: "Contact" },
 ] as const;
 
-const PHONE_DISPLAY = "+91 77997 70919";
-const PHONE_HREF = "tel:+917799770919";
+const PHONE_DISPLAY = "+91 86883 76662";
+const PHONE_HREF = "tel:+918688376662";
 
 export function Navbar() {
   const [open, setOpen] = useState(false);

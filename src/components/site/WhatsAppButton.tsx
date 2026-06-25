@@ -5,7 +5,7 @@ type Props = {
 };
 
 export function WhatsAppButton({ position = "fixed" }: Props) {
-  const phoneNumber = "7799770919";
+  const phoneNumber = "8688376662"; // Replace with your WhatsApp number
   const message = "Hello! I have a question about your services.";
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 

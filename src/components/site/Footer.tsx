@@ -3,7 +3,7 @@ import { Twitter, Linkedin, Instagram, Youtube, MessageCircle } from "lucide-rea
 import logo from "@/assets/images/growmintlogo.png";
 export function Footer() {
   const handleWhatsAppClick = () => {
-    window.open("https://wa.me/917799770919", "_blank");
+    window.open("https://wa.me/918688376662", "_blank");
   };
 
   return (
@@ -59,12 +59,25 @@ export function Footer() {
           <div>
             <h4 className="font-display text-lg font-semibold text-white">Get In Touch</h4>
             <div className="mt-5 space-y-3 text-sm text-white/70">
-              <p className="flex flex-col">
-                <span className="text-white/50 text-xs uppercase tracking-wider mb-1">Phone</span>
-                <a href="tel:+911234567890" className="hover:text-white transition-colors">
-                  +91 12345 67890
-                </a>
-              </p>
+             <p className="flex flex-col">
+  <span className="text-white/50 text-xs uppercase tracking-wider mb-1">
+    Phone
+  </span>
+
+  <a
+    href="tel:+91868837662"
+    className="hover:text-white transition-colors"
+  >
+    +91 86883 76662
+  </a>
+
+  <a
+    href="tel:+917799770919"
+    className="hover:text-white transition-colors mt-1"
+  >
+    +91 77997 70919
+  </a>
+</p>
               <p className="flex flex-col">
                 <span className="text-white/50 text-xs uppercase tracking-wider mb-1">Email</span>
                 <a href="mailto:Growmintdigitals@gmail.com" className="hover:text-white transition-colors break-all">
@@ -73,7 +86,7 @@ export function Footer() {
               </p>
               <p className="flex flex-col">
                 <span className="text-white/50 text-xs uppercase tracking-wider mb-1">Location</span>
-                <span>Hyderabad, India</span>
+                <span>Visakhapatnam, Andhra Pradesh</span>
               </p>
             </div>
             

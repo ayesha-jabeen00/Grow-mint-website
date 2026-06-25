@@ -5,6 +5,8 @@ import {
   TrendingUp, Sparkles, Zap, Mail, Globe, GitBranch, ArrowRight, X,
   Send, Loader2,
 } from "lucide-react";
+import { Rocket } from "lucide-react";
+import { ChartNoAxesCombined } from "lucide-react";
 import { useState } from "react";
 
 const WEBSITE_CATEGORIES = [
@@ -378,7 +380,7 @@ function ServicesPage() {
 
   const handleWhatsAppClick = (siteName: string) => {
     const message = `Hi, I want a website similar to ${siteName}. Please share pricing and details.`;
-    const whatsappUrl = `https://wa.me/917799770919?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/918688376662?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");
   };
 
@@ -420,7 +422,7 @@ Thank you.`;
 
     // Encode the message for URL
     const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/917799770919?text=${encodedMessage}`;
+    const whatsappUrl = `https://wa.me/918688376662?text=${encodedMessage}`;
     
     // Open WhatsApp
     window.open(whatsappUrl, "_blank");
@@ -463,285 +465,324 @@ Thank you.`;
           </Button>
         </div>
       </section>
+{/* Pricing Packages Section - Redesigned with Modal */}
+<section className="relative overflow-hidden py-24">
+  {/* Background effects */}
+  <div className="absolute inset-0 -z-10">
+    <div className="absolute top-0 -left-4 h-72 w-72 rounded-full bg-green-500/20 blur-[100px] dark:bg-green-500/10" />
+    <div className="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-green-600/20 blur-[120px] dark:bg-green-600/10" />
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-80 w-80 rounded-full bg-green-400/10 blur-[100px]" />
+  </div>
 
-      {/* Pricing Packages Section - Redesigned with Modal */}
-      <section className="relative overflow-hidden py-24">
-        {/* Background effects */}
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute top-0 -left-4 h-72 w-72 rounded-full bg-green-500/20 blur-[100px] dark:bg-green-500/10" />
-          <div className="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-green-600/20 blur-[120px] dark:bg-green-600/10" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-80 w-80 rounded-full bg-green-400/10 blur-[100px]" />
-        </div>
+  <div className="container-page">
+    {/* Section Header */}
+    <div className="text-center mb-16">
+      <div className="inline-flex items-center rounded-full border border-green-200 dark:border-green-800 bg-green-50/50 dark:bg-green-950/30 backdrop-blur-sm px-4 py-1.5 mb-4">
+        <span className="text-xs font-medium uppercase tracking-wider text-green-600 dark:text-green-400">Packages</span>
+      </div>
+      <h2 className="font-display text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl bg-gradient-to-r from-green-600 to-green-400 bg-clip-text text-transparent">
+        GROWMINT PACKAGES
+      </h2>
+      <p className="mx-auto mt-4 max-w-2xl text-muted-foreground text-lg">
+        Content That Connects. Strategy That Grows.
+      </p>
+    </div>
 
-        <div className="container-page">
-          {/* Section Header */}
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center rounded-full border border-green-200 dark:border-green-800 bg-green-50/50 dark:bg-green-950/30 backdrop-blur-sm px-4 py-1.5 mb-4">
-              <span className="text-xs font-medium uppercase tracking-wider text-green-600 dark:text-green-400">Packages</span>
-            </div>
-            <h2 className="font-display text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl bg-gradient-to-r from-green-600 to-green-400 bg-clip-text text-transparent">
-              GROWMINT PACKAGES
-            </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-muted-foreground text-lg">
-              Content That Connects. Strategy That Grows.
-            </p>
-          </div>
-
-          {/* Pricing Cards Grid */}
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 items-center justify-items-center">
-            
-            {/* Starter Package */}
-            <div className="group relative w-full max-w-sm">
-              <div className="relative rounded-3xl bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border border-green-100/50 dark:border-green-900/30 p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl shadow-lg hover:shadow-green-500/10 flex flex-col h-full">
-                {/* Glow effect */}
-                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-green-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                <div className="relative flex-1">
-                  <div className="mb-4">
-                    <span className="inline-flex items-center rounded-full bg-green-100 dark:bg-green-900/30 px-3 py-1 text-xs font-semibold text-green-700 dark:text-green-300">
-                      STARTER
-                    </span>
-                  </div>
-                  
-                  <h3 className="font-display text-2xl font-bold mb-2 text-gray-900 dark:text-white">STARTER PACKAGE</h3>
-                  <p className="text-sm text-muted-foreground mb-6">Perfect For Startups & Small Businesses</p>
-                  
-                  <div className="mb-6">
-                    <div className="flex items-center gap-3">
-                      <span className="text-2xl font-bold text-green-600 dark:text-green-400">₹18,000</span>
-                      <span className="text-sm text-muted-foreground line-through">₹20,000</span>
-                    </div>
-                    <span className="text-xs text-muted-foreground">/month</span>
-                  </div>
-                  
-                  <ul className="space-y-3.5">
-                    <li className="flex items-start gap-3 text-sm">
-                      <div className="mt-0.5 flex-shrink-0 rounded-full bg-green-100 dark:bg-green-900/30 p-1">
-                        <div className="h-3.5 w-3.5 text-green-600 dark:text-green-400">✓</div>
-                      </div>
-                      <span className="text-gray-700 dark:text-gray-300">12 Reels / Month</span>
-                    </li>
-                    <li className="flex items-start gap-3 text-sm">
-                      <div className="mt-0.5 flex-shrink-0 rounded-full bg-green-100 dark:bg-green-900/30 p-1">
-                        <div className="h-3.5 w-3.5 text-green-600 dark:text-green-400">✓</div>
-                      </div>
-                      <span className="text-gray-700 dark:text-gray-300">Festival Creative Covers</span>
-                    </li>
-                    <li className="flex items-start gap-3 text-sm">
-                      <div className="mt-0.5 flex-shrink-0 rounded-full bg-green-100 dark:bg-green-900/30 p-1">
-                        <div className="h-3.5 w-3.5 text-green-600 dark:text-green-400">✓</div>
-                      </div>
-                      <span className="text-gray-700 dark:text-gray-300">Content Creation</span>
-                    </li>
-                    <li className="flex items-start gap-3 text-sm">
-                      <div className="mt-0.5 flex-shrink-0 rounded-full bg-green-100 dark:bg-green-900/30 p-1">
-                        <div className="h-3.5 w-3.5 text-green-600 dark:text-green-400">✓</div>
-                      </div>
-                      <span className="text-gray-700 dark:text-gray-300">Editing</span>
-                    </li>
-                    <li className="flex items-start gap-3 text-sm">
-                      <div className="mt-0.5 flex-shrink-0 rounded-full bg-green-100 dark:bg-green-900/30 p-1">
-                        <div className="h-3.5 w-3.5 text-green-600 dark:text-green-400">✓</div>
-                      </div>
-                      <span className="text-gray-700 dark:text-gray-300">1 Day Shoot Session</span>
-                    </li>
-                    <li className="flex items-start gap-3 text-sm">
-                      <div className="mt-0.5 flex-shrink-0 rounded-full bg-green-100 dark:bg-green-900/30 p-1">
-                        <div className="h-3.5 w-3.5 text-green-600 dark:text-green-400">✓</div>
-                      </div>
-                      <span className="text-gray-700 dark:text-gray-300">Monthly Content Calendar</span>
-                    </li>
-                  </ul>
-                </div>
-                
-     <Button
-  onClick={() => handlePricingButtonClick("Starter Package")}
-  className="relative z-20 mt-8 w-full rounded-full bg-green-600 text-white hover:bg-green-700 transition-all duration-300 hover:scale-105"
->
-  Choose Starter
-</Button>
+    {/* Pricing Cards Grid */}
+    <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 items-stretch justify-items-center">
+      
+      {/* Starter Package */}
+      <div className="group relative w-full max-w-sm h-full">
+        <div className="relative rounded-3xl bg-white dark:bg-gray-900 border-2 border-green-400/60 dark:border-green-500/40 p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl shadow-lg hover:shadow-green-500/20 flex flex-col h-full">
+          <div className="relative flex-1 flex flex-col">
+            {/* Icon */}
+            <div className="mb-4 flex justify-center">
+              <div className="flex h-20 w-20 items-center justify-center rounded-full border-4 border-green-500/40 bg-green-50 dark:bg-green-950/30">
+                <Rocket className="h-10 w-10 text-green-600 dark:text-green-400" strokeWidth={2.5} />
               </div>
             </div>
-
-            {/* Growth Package - Most Popular */}
-            <div className="group relative w-full max-w-sm lg:-mt-8">
-              <div className="relative rounded-3xl bg-gradient-to-br from-green-50 via-white to-green-50/50 dark:from-green-950/30 dark:via-gray-900 dark:to-green-950/30 backdrop-blur-xl p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl shadow-xl shadow-green-500/20 border-2 border-green-400 dark:border-green-600 flex flex-col h-full">
-                {/* Animated gradient border glow */}
-                <div className="absolute -inset-0.5 rounded-3xl bg-gradient-to-r from-green-400 via-green-500 to-green-400 opacity-30 blur-xl group-hover:opacity-50 transition-opacity duration-500 -z-10" />
-                <div className="absolute -inset-0.5 rounded-3xl bg-gradient-to-r from-green-400 via-green-500 to-green-400 opacity-10 group-hover:opacity-30 transition-opacity duration-500 -z-10" />
-                
-                {/* Most Popular Badge */}
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
-                  <span className="inline-flex animate-pulse items-center rounded-full bg-gradient-to-r from-green-500 to-green-600 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-white shadow-lg shadow-green-500/30">
-                    ⭐ MOST POPULAR
+            
+            <h3 className="font-display text-2xl font-bold text-center mb-1 text-gray-900 dark:text-white">STARTER</h3>
+            <h4 className="font-display text-xl font-semibold text-center mb-2 text-gray-700 dark:text-gray-300">PACKAGE</h4>
+            
+            {/* Green Header Strip */}
+            <div className="mb-4 bg-green-600 dark:bg-green-700 rounded-lg p-2 text-center">
+              <p className="text-xs font-medium text-white uppercase tracking-wide">
+                Perfect For Startups & Small Businesses
+              </p>
+            </div>
+            
+            {/* Price Section - Poster Style */}
+            <div className="mb-4 text-center">
+              <div className="flex items-center justify-center gap-2">
+                <span className="text-lg font-bold text-red-500 line-through">₹20,000</span>
+                <span className="text-xs text-muted-foreground">/month</span>
+              </div>
+              
+              <div className="mt-1">
+                <span className="text-sm font-bold text-green-600 dark:text-green-400">LIMITED TIME OFFER</span>
+              </div>
+            </div>
+            
+            {/* Green Price Box */}
+            <div className="relative mb-6">
+              <div className="bg-gradient-to-br from-green-600 to-green-700 rounded-xl p-4 shadow-lg shadow-green-500/30">
+                <div className="text-center">
+                  <span className="text-3xl font-bold text-white">₹18,000</span>
+                  <span className="text-sm text-green-100 ml-1">/month</span>
+                </div>
+                <div className="mt-1 text-center">
+                  <span className="text-xs font-semibold text-green-100 bg-white/20 px-3 py-0.5 rounded-full">
+                    NOW ONLY
                   </span>
                 </div>
-                
-                <div className="relative flex-1">
-                  <div className="mb-4">
-                    <span className="inline-flex items-center rounded-full bg-green-200 dark:bg-green-800/50 px-3 py-1 text-xs font-semibold text-green-800 dark:text-green-200">
-                      GROWTH
-                    </span>
-                  </div>
-                  
-                  <h3 className="font-display text-2xl font-bold mb-2 text-gray-900 dark:text-white">GROWTH PACKAGE</h3>
-                  <p className="text-sm text-muted-foreground mb-6">Perfect For Growing Businesses</p>
-                  
-                  <div className="mb-6">
-                    <div className="flex items-center gap-3">
-                      <span className="text-3xl font-bold text-green-600 dark:text-green-400">₹24,000</span>
-                      <span className="text-sm text-muted-foreground line-through">₹26,000</span>
-                    </div>
-                    <span className="text-xs text-muted-foreground">/month</span>
-                  </div>
-                  
-                  <ul className="space-y-3.5">
-                    <li className="flex items-start gap-3 text-sm">
-                      <div className="mt-0.5 flex-shrink-0 rounded-full bg-green-500 dark:bg-green-400 p-1">
-                        <div className="h-3.5 w-3.5 text-white">✓</div>
-                      </div>
-                      <span className="text-gray-700 dark:text-gray-300 font-medium">15 Reels / Month</span>
-                    </li>
-                    <li className="flex items-start gap-3 text-sm">
-                      <div className="mt-0.5 flex-shrink-0 rounded-full bg-green-500 dark:bg-green-400 p-1">
-                        <div className="h-3.5 w-3.5 text-white">✓</div>
-                      </div>
-                      <span className="text-gray-700 dark:text-gray-300">Festival Creative Covers</span>
-                    </li>
-                    <li className="flex items-start gap-3 text-sm">
-                      <div className="mt-0.5 flex-shrink-0 rounded-full bg-green-500 dark:bg-green-400 p-1">
-                        <div className="h-3.5 w-3.5 text-white">✓</div>
-                      </div>
-                      <span className="text-gray-700 dark:text-gray-300">Content Creation</span>
-                    </li>
-                    <li className="flex items-start gap-3 text-sm">
-                      <div className="mt-0.5 flex-shrink-0 rounded-full bg-green-500 dark:bg-green-400 p-1">
-                        <div className="h-3.5 w-3.5 text-white">✓</div>
-                      </div>
-                      <span className="text-gray-700 dark:text-gray-300">Professional Editing</span>
-                    </li>
-                    <li className="flex items-start gap-3 text-sm">
-                      <div className="mt-0.5 flex-shrink-0 rounded-full bg-green-500 dark:bg-green-400 p-1">
-                        <div className="h-3.5 w-3.5 text-white">✓</div>
-                      </div>
-                      <span className="text-gray-700 dark:text-gray-300">2-Day Shoot Session</span>
-                    </li>
-                    <li className="flex items-start gap-3 text-sm">
-                      <div className="mt-0.5 flex-shrink-0 rounded-full bg-green-500 dark:bg-green-400 p-1">
-                        <div className="h-3.5 w-3.5 text-white">✓</div>
-                      </div>
-                      <span className="text-gray-700 dark:text-gray-300">Monthly Content Calendar</span>
-                    </li>
-                  </ul>
-                </div>
-                
-                <Button
-                  onClick={() => handlePricingButtonClick("Growth Package")}
-                  className="mt-8 w-full rounded-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white shadow-lg shadow-green-500/30 transition-all duration-300 hover:scale-105 hover:shadow-xl"
-                >
-                  Choose Growth
-                </Button>
               </div>
             </div>
-
-            {/* Premium Package */}
-            <div className="group relative w-full max-w-sm">
-              <div className="relative rounded-3xl bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border border-green-100/50 dark:border-green-900/30 p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl shadow-lg hover:shadow-green-500/10 flex flex-col h-full">
-                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-green-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                <div className="relative flex-1">
-                  <div className="mb-4">
-                    <span className="inline-flex items-center rounded-full bg-green-100 dark:bg-green-900/30 px-3 py-1 text-xs font-semibold text-green-700 dark:text-green-300">
-                      PREMIUM
-                    </span>
-                  </div>
-                  
-                  <h3 className="font-display text-2xl font-bold mb-2 text-gray-900 dark:text-white">PREMIUM PACKAGE</h3>
-                  <p className="text-sm text-muted-foreground mb-6">Perfect For Established Brands</p>
-                  
-                  <div className="mb-6">
-                    <div className="flex items-center gap-3">
-                      <span className="text-2xl font-bold text-green-600 dark:text-green-400">₹30,000</span>
-                      <span className="text-sm text-muted-foreground line-through">₹32,000</span>
+            
+            {/* Features with Dividers */}
+            <ul className="space-y-3 flex-1">
+              {[
+                "12 Reels / Month",
+                "Festival Creative Covers",
+                "Content Creation",
+                "Editing",
+                "1 Day Shoot Session",
+                "Monthly Content Calendar"
+              ].map((feature, index) => (
+                <li key={index}>
+                  <div className="flex items-start gap-3 text-sm">
+                    <div className="mt-0.5 flex-shrink-0 rounded-full bg-green-500 p-1">
+                      <div className="h-3 w-3 text-white">✓</div>
                     </div>
-                    <span className="text-xs text-muted-foreground">/month</span>
+                    <span className="text-gray-700 dark:text-gray-300">{feature}</span>
                   </div>
-                  
-                  <ul className="space-y-3.5">
-                    <li className="flex items-start gap-3 text-sm">
-                      <div className="mt-0.5 flex-shrink-0 rounded-full bg-green-100 dark:bg-green-900/30 p-1">
-                        <div className="h-3.5 w-3.5 text-green-600 dark:text-green-400">✓</div>
-                      </div>
-                      <span className="text-gray-700 dark:text-gray-300">20 Reels / Month</span>
-                    </li>
-                    <li className="flex items-start gap-3 text-sm">
-                      <div className="mt-0.5 flex-shrink-0 rounded-full bg-green-100 dark:bg-green-900/30 p-1">
-                        <div className="h-3.5 w-3.5 text-green-600 dark:text-green-400">✓</div>
-                      </div>
-                      <span className="text-gray-700 dark:text-gray-300">Festival Creative Covers</span>
-                    </li>
-                    <li className="flex items-start gap-3 text-sm">
-                      <div className="mt-0.5 flex-shrink-0 rounded-full bg-green-100 dark:bg-green-900/30 p-1">
-                        <div className="h-3.5 w-3.5 text-green-600 dark:text-green-400">✓</div>
-                      </div>
-                      <span className="text-gray-700 dark:text-gray-300">Content Creation</span>
-                    </li>
-                    <li className="flex items-start gap-3 text-sm">
-                      <div className="mt-0.5 flex-shrink-0 rounded-full bg-green-100 dark:bg-green-900/30 p-1">
-                        <div className="h-3.5 w-3.5 text-green-600 dark:text-green-400">✓</div>
-                      </div>
-                      <span className="text-gray-700 dark:text-gray-300">Professional Editing</span>
-                    </li>
-                    <li className="flex items-start gap-3 text-sm">
-                      <div className="mt-0.5 flex-shrink-0 rounded-full bg-green-100 dark:bg-green-900/30 p-1">
-                        <div className="h-3.5 w-3.5 text-green-600 dark:text-green-400">✓</div>
-                      </div>
-                      <span className="text-gray-700 dark:text-gray-300">4-Day Shoot Session</span>
-                    </li>
-                    <li className="flex items-start gap-3 text-sm">
-                      <div className="mt-0.5 flex-shrink-0 rounded-full bg-green-100 dark:bg-green-900/30 p-1">
-                        <div className="h-3.5 w-3.5 text-green-600 dark:text-green-400">✓</div>
-                      </div>
-                      <span className="text-gray-700 dark:text-gray-300">Monthly Content Calendar</span>
-                    </li>
-                    <li className="flex items-start gap-3 text-sm">
-                      <div className="mt-0.5 flex-shrink-0 rounded-full bg-green-100 dark:bg-green-900/30 p-1">
-                        <div className="h-3.5 w-3.5 text-green-600 dark:text-green-400">✓</div>
-                      </div>
-                      <span className="text-gray-700 dark:text-gray-300">Monthly Performance Review</span>
-                    </li>
-                  </ul>
-                </div>
-                
- <Button
-  onClick={() => handlePricingButtonClick("Premium Package")}
-  className="relative z-20 mt-8 w-full rounded-full bg-green-600 text-white hover:bg-green-700 transition-all duration-300 hover:scale-105"
->
-  Choose Premium
-</Button>
-              </div>
-            </div>
+                  {index < 5 && (
+                    <div className="mt-3 border-t border-gray-200 dark:border-gray-700" />
+                  )}
+                </li>
+              ))}
+            </ul>
           </div>
-
-          {/* Custom Package CTA */}
-          <div className="mt-16 text-center">
-            <div className="inline-flex flex-col items-center gap-4 rounded-2xl border border-green-200 dark:border-green-800 bg-green-50/30 dark:bg-green-950/20 backdrop-blur-sm px-8 py-6">
-              <p className="text-lg font-medium text-muted-foreground">
-                Need a custom package?
-              </p>
-              <Button
-                onClick={() => handlePricingButtonClick("Custom Package")}
-                variant="outline"
-                size="lg"
-                className="rounded-full border-2 border-green-200 dark:border-green-800 text-green-700 dark:text-green-300 hover:bg-green-50 dark:hover:bg-green-950/50 hover:border-green-500 transition-all duration-300 hover:scale-105"
-              >
-                Request Custom Quote
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </div>
-          </div>
+          
+          <Button
+            onClick={() => handlePricingButtonClick("Starter Package")}
+            className="relative z-20 mt-6 w-full rounded-full bg-green-600 text-white hover:bg-green-700 transition-all duration-300 hover:scale-105"
+          >
+            Choose Starter
+          </Button>
         </div>
-      </section>
+      </div>
+
+      {/* Growth Package - Most Popular */}
+      <div className="group relative w-full max-w-sm h-full lg:-mt-4">
+        <div className="relative rounded-3xl bg-white dark:bg-gray-900 p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl shadow-xl shadow-green-500/25 border-4 border-green-500 dark:border-green-400 flex flex-col h-full">
+          {/* Glowing border effect */}
+          <div className="absolute -inset-0.5 rounded-3xl bg-gradient-to-r from-green-400 via-green-500 to-green-400 opacity-40 blur-xl group-hover:opacity-60 transition-opacity duration-500 -z-10 animate-pulse" />
+          <div className="absolute -inset-0.5 rounded-3xl bg-gradient-to-r from-green-400 via-green-500 to-green-400 opacity-20 group-hover:opacity-40 transition-opacity duration-500 -z-10" />
+          
+          {/* Most Popular Badge */}
+          <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
+            <span className="inline-flex animate-pulse items-center rounded-full bg-gradient-to-r from-green-500 to-green-600 px-5 py-1.5 text-xs font-bold uppercase tracking-wider text-white shadow-lg shadow-green-500/30">
+              ⭐ MOST POPULAR
+            </span>
+          </div>
+          
+          <div className="relative flex-1 flex flex-col">
+            {/* Icon */}
+          <div className="mb-4 flex justify-center">
+  <div className="flex h-20 w-20 items-center justify-center rounded-full border-4 border-green-500 bg-gradient-to-b from-green-700 to-green-900 shadow-lg">
+    <ChartNoAxesCombined
+      className="h-10 w-10 text-white"
+      strokeWidth={2.5}
+    />
+  </div>
+</div>
+            
+            <h3 className="font-display text-2xl font-bold text-center mb-1 text-gray-900 dark:text-white">GROWTH</h3>
+            <h4 className="font-display text-xl font-semibold text-center mb-2 text-gray-700 dark:text-gray-300">PACKAGE</h4>
+            
+            {/* Green Header Strip */}
+            <div className="mb-4 bg-green-600 dark:bg-green-700 rounded-lg p-2 text-center">
+              <p className="text-xs font-medium text-white uppercase tracking-wide">
+                Perfect For Growing Businesses
+              </p>
+            </div>
+            
+            {/* Price Section - Poster Style */}
+            <div className="mb-4 text-center">
+              <div className="flex items-center justify-center gap-2">
+                <span className="text-lg font-bold text-red-500 line-through">₹30,000</span>
+                <span className="text-xs text-muted-foreground">/month</span>
+              </div>
+              
+              <div className="mt-1">
+                <span className="text-sm font-bold text-green-600 dark:text-green-400">LIMITED TIME OFFER</span>
+              </div>
+            </div>
+            
+            {/* Green Price Box */}
+            <div className="relative mb-6">
+              <div className="bg-gradient-to-br from-green-600 to-green-700 rounded-xl p-4 shadow-lg shadow-green-500/30">
+                <div className="text-center">
+                  <span className="text-3xl font-bold text-white">₹26,000</span>
+                  <span className="text-sm text-green-100 ml-1">/month</span>
+                </div>
+                <div className="mt-1 text-center">
+                  <span className="text-xs font-semibold text-green-100 bg-white/20 px-3 py-0.5 rounded-full">
+                    NOW ONLY
+                  </span>
+                </div>
+              </div>
+            </div>
+            
+            {/* Features with Dividers */}
+            <ul className="space-y-3 flex-1">
+              {[
+                "15 Reels / Month",
+                "Festival Creative Covers",
+                "Content Creation",
+                "Professional Editing",
+                "2-Day Shoot Session",
+                "Monthly Content Calendar"
+              ].map((feature, index) => (
+                <li key={index}>
+                  <div className="flex items-start gap-3 text-sm">
+                    <div className="mt-0.5 flex-shrink-0 rounded-full bg-green-500 p-1">
+                      <div className="h-3 w-3 text-white">✓</div>
+                    </div>
+                    <span className="text-gray-700 dark:text-gray-300 font-medium">{feature}</span>
+                  </div>
+                  {index < 5 && (
+                    <div className="mt-3 border-t border-gray-200 dark:border-gray-700" />
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+          
+          <Button
+            onClick={() => handlePricingButtonClick("Growth Package")}
+            className="mt-6 w-full rounded-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white shadow-lg shadow-green-500/30 transition-all duration-300 hover:scale-105 hover:shadow-xl"
+          >
+            Choose Growth
+          </Button>
+        </div>
+      </div>
+
+      {/* Premium Package */}
+      <div className="group relative w-full max-w-sm h-full">
+        <div className="relative rounded-3xl bg-white dark:bg-gray-900 border-2 border-green-400/60 dark:border-green-500/40 p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl shadow-lg hover:shadow-green-500/20 flex flex-col h-full">
+          <div className="relative flex-1 flex flex-col">
+            {/* Icon */}
+            <div className="mb-4 flex justify-center">
+              <div className="flex h-20 w-20 items-center justify-center rounded-full border-4 border-green-500/40 bg-green-50 dark:bg-green-950/30">
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  className="h-10 w-10 text-green-600 dark:text-green-400"
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  strokeWidth="2.5" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                >
+                  <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+                </svg>
+              </div>
+            </div>
+            
+            <h3 className="font-display text-2xl font-bold text-center mb-1 text-gray-900 dark:text-white">PREMIUM</h3>
+            <h4 className="font-display text-xl font-semibold text-center mb-2 text-gray-700 dark:text-gray-300">PACKAGE</h4>
+            
+            {/* Green Header Strip */}
+            <div className="mb-4 bg-green-600 dark:bg-green-700 rounded-lg p-2 text-center">
+              <p className="text-xs font-medium text-white uppercase tracking-wide">
+                Perfect For Established Brands
+              </p>
+            </div>
+            
+            {/* Price Section - Poster Style */}
+            <div className="mb-4 text-center">
+              <div className="flex items-center justify-center gap-2">
+                <span className="text-lg font-bold text-red-500 line-through">₹35,000</span>
+                <span className="text-xs text-muted-foreground">/month</span>
+              </div>
+              
+              <div className="mt-1">
+                <span className="text-sm font-bold text-green-600 dark:text-green-400">LIMITED TIME OFFER</span>
+              </div>
+            </div>
+            
+            {/* Green Price Box */}
+            <div className="relative mb-6">
+              <div className="bg-gradient-to-br from-green-600 to-green-700 rounded-xl p-4 shadow-lg shadow-green-500/30">
+                <div className="text-center">
+                  <span className="text-3xl font-bold text-white">₹30,000</span>
+                  <span className="text-sm text-green-100 ml-1">/month</span>
+                </div>
+                <div className="mt-1 text-center">
+                  <span className="text-xs font-semibold text-green-100 bg-white/20 px-3 py-0.5 rounded-full">
+                    NOW ONLY
+                  </span>
+                </div>
+              </div>
+            </div>
+            
+            {/* Features with Dividers */}
+            <ul className="space-y-3 flex-1">
+              {[
+                "20 Reels / Month",
+                "Festival Creative Covers",
+                "Content Creation",
+                "Professional Editing",
+                "4-Day Shoot Session",
+                "Monthly Content Calendar",
+                "Monthly Performance Review"
+              ].map((feature, index) => (
+                <li key={index}>
+                  <div className="flex items-start gap-3 text-sm">
+                    <div className="mt-0.5 flex-shrink-0 rounded-full bg-green-500 p-1">
+                      <div className="h-3 w-3 text-white">✓</div>
+                    </div>
+                    <span className="text-gray-700 dark:text-gray-300">{feature}</span>
+                  </div>
+                  {index < 6 && (
+                    <div className="mt-3 border-t border-gray-200 dark:border-gray-700" />
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+          
+          <Button
+            onClick={() => handlePricingButtonClick("Premium Package")}
+            className="relative z-20 mt-6 w-full rounded-full bg-green-600 text-white hover:bg-green-700 transition-all duration-300 hover:scale-105"
+          >
+            Choose Premium
+          </Button>
+        </div>
+      </div>
+    </div>
+
+    {/* Custom Package CTA */}
+    <div className="mt-16 text-center">
+      <div className="inline-flex flex-col items-center gap-4 rounded-2xl border border-green-200 dark:border-green-800 bg-green-50/30 dark:bg-green-950/20 backdrop-blur-sm px-8 py-6">
+        <p className="text-lg font-medium text-muted-foreground">
+          Need a custom package?
+        </p>
+        <Button
+          onClick={() => handlePricingButtonClick("Custom Package")}
+          variant="outline"
+          size="lg"
+          className="rounded-full border-2 border-green-200 dark:border-green-800 text-green-700 dark:text-green-300 hover:bg-green-50 dark:hover:bg-green-950/50 hover:border-green-500 transition-all duration-300 hover:scale-105"
+        >
+          Request Custom Quote
+          <ArrowRight className="ml-2 h-4 w-4" />
+        </Button>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Demo Website Collection Section */}
       <section className="container-page pb-24">
